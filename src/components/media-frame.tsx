@@ -14,6 +14,8 @@ type MediaFrameProps = {
   label?: string;
   className?: string;
   priority?: boolean;
+  /** Subtle brand-colour gradient over the media (petrol → lime). Default on. */
+  tint?: boolean;
 };
 
 /**
@@ -29,7 +31,9 @@ export function MediaFrame({
   label = "Hero-Medium — Foto oder Video folgt",
   className,
   priority,
+  tint = true,
 }: MediaFrameProps) {
+  const hasMedia = Boolean(video || src);
   return (
     <div
       className={cn(
@@ -61,7 +65,41 @@ export function MediaFrame({
       ) : (
         <Placeholder label={label} />
       )}
+
+      {/* Brand-colour gradient filter over the media */}
+      {hasMedia && tint && <MediaTint />}
     </div>
+  );
+}
+
+function MediaTint() {
+  return (
+    <>
+      {/* petrol wash bottom-up, keeps the subject readable */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to top, color-mix(in oklab, var(--ink) 62%, transparent) 0%, transparent 46%)",
+        }}
+        aria-hidden
+      />
+      {/* diagonal petrol→lime brand tint, light */}
+      <div
+        className="pointer-events-none absolute inset-0 mix-blend-soft-light"
+        style={{
+          background:
+            "linear-gradient(135deg, color-mix(in oklab, var(--ink) 55%, transparent) 0%, transparent 40%, color-mix(in oklab, var(--lime) 55%, transparent) 100%)",
+        }}
+        aria-hidden
+      />
+      {/* faint lime glow, top-right */}
+      <div
+        className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-30 blur-3xl"
+        style={{ background: "var(--lime)" }}
+        aria-hidden
+      />
+    </>
   );
 }
 

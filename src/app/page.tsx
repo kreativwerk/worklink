@@ -113,7 +113,12 @@ export default function Home() {
           animate="show"
           className="relative"
         >
-          <MediaFrame aspect="aspect-[4/5]" priority />
+          <MediaFrame
+            src="/hero.webp"
+            alt="Fahrer aus dem Westbalkan bei der Arbeit in Deutschland"
+            aspect="aspect-[4/5]"
+            priority
+          />
 
           {/* floating chips */}
           <div className="absolute -left-4 bottom-8 hidden rounded-2xl border border-border bg-bg-elevated px-4 py-3 shadow-xl sm:block">
