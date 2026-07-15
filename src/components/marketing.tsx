@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { MessageCircle, Mail, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { Logo } from "@/components/logo";
 import { CONTACT, INDUSTRIES, STATS } from "@/lib/content";
@@ -148,7 +148,9 @@ export function ContactCTA({
   intro: string;
 }) {
   const items = [
-    { icon: MessageCircle, label: "WhatsApp", value: "Kontakt per Klick", href: CONTACT.whatsapp },
+    ...(CONTACT.whatsapp
+      ? [{ icon: MessageCircle, label: "WhatsApp", value: "Kontakt per Klick", href: CONTACT.whatsapp }]
+      : []),
     { icon: Mail, label: "E-Mail", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
   ];
   return (
@@ -187,9 +189,9 @@ export function SiteFooter() {
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex w-[min(72rem,calc(100%-2rem))] flex-col items-center justify-between gap-4 text-sm text-fg-muted sm:flex-row">
         <Logo className="text-[15px]" />
-        <p className="flex items-center gap-1.5">
-          <MapPin className="h-4 w-4" /> {CONTACT.office} · {CONTACT.email}
-        </p>
+        <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-1.5 hover:text-fg">
+          <Mail className="h-4 w-4" /> {CONTACT.email}
+        </a>
         <div className="flex gap-5">
           <Link href="/impressum" className="hover:text-fg">Impressum</Link>
           <Link href="/datenschutz" className="hover:text-fg">Datenschutz</Link>

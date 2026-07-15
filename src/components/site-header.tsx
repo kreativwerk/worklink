@@ -18,10 +18,17 @@ export function SiteHeader() {
         <Link href="/">
           <Logo className="text-[15px]" />
         </Link>
-        <a href={CONTACT.whatsapp} className="btn btn-lime px-4 py-2 text-sm">
-          <MessageCircle className="h-4 w-4" />
-          <span className="hidden sm:inline">WhatsApp</span>
-        </a>
+        {CONTACT.whatsapp ? (
+          <a href={CONTACT.whatsapp} className="btn btn-lime px-4 py-2 text-sm">
+            <MessageCircle className="h-4 w-4" />
+            <span className="hidden sm:inline">WhatsApp</span>
+          </a>
+        ) : (
+          <a href={`mailto:${CONTACT.email}`} className="btn btn-lime px-4 py-2 text-sm">
+            <MessageCircle className="h-4 w-4" />
+            <span className="hidden sm:inline">Kontakt</span>
+          </a>
+        )}
       </div>
     </header>
   );

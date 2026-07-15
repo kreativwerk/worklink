@@ -51,9 +51,9 @@ export default function BewerberPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-lg text-lg text-fg-muted">
-                Rekrutimi për kompani gjermane – hapi yt i parë drejt Gjermanisë.
-                Bewerben Sie sich bei geprüften deutschen Unternehmen; wir
-                begleiten Sie bis zum ersten Arbeitstag.
+                Puno në Gjermani me kontratë të rregullt — WorkLink të lidh
+                me punëdhënës gjermanë dhe të shoqëron nga aplikimi deri në
+                ditën e parë të punës.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
@@ -61,9 +61,11 @@ export default function BewerberPage() {
                 <Link href="/bewerben" className="btn btn-lime">
                   Apliko tani <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={CONTACT.whatsapp} className="btn btn-outline">
-                  <MessageCircle className="h-4 w-4" /> WhatsApp
-                </a>
+                {CONTACT.whatsapp && (
+                  <a href={CONTACT.whatsapp} className="btn btn-outline">
+                    <MessageCircle className="h-4 w-4" /> WhatsApp
+                  </a>
+                )}
               </div>
             </Reveal>
             <Reveal delay={0.2}>
@@ -80,11 +82,11 @@ export default function BewerberPage() {
           <Reveal delay={0.15}>
             <div className="surface-soft relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-card)] border border-border p-8">
               <Image
-                src="/kosovo-map.svg"
-                alt="Kosovo"
-                width={260}
-                height={260}
-                className="relative opacity-90"
+                src="/hero.webp"
+                alt="Fahrer bei der Arbeit in Deutschland"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
               />
               <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-border bg-bg-elevated p-5">
                 <p className="text-3xl font-semibold text-lime-2">Falas</p>
@@ -101,8 +103,8 @@ export default function BewerberPage() {
       <section className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16">
         <SectionHeading
           pill="Fushat · Branchen"
-          title="Fushat për të cilat rekrutojmë"
-          intro="Emrat e profesioneve i mbajmë në gjermanisht – ashtu siç do t'i hasësh në vendin tënd të punës në Gjermani."
+          title="Profesionet që kërkohen në Gjermani"
+          intro="Këto janë fushat ku punëdhënësit gjermanë kërkojnë njerëz tani — zgjidh atë që të përshtatet."
         />
         <div className="mt-10">
           <IndustryGrid lang="sq" />
@@ -127,7 +129,7 @@ export default function BewerberPage() {
       <section className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16 lg:py-24">
         <SectionHeading
           pill="Përparësitë"
-          title="Tri gjëra në të cilat mund të mbështetesh"
+          title="Çfarë të garantojmë ne"
         />
         <div className="mt-10">
           <Promises items={PROMISES_SQ} />

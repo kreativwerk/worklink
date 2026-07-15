@@ -1,165 +1,207 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowUpRight, Building2, UserRound, MessageCircle, Clock } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  UserRound,
+  MessageCircle,
+  Check,
+} from "lucide-react";
 import { Logo } from "@/components/logo";
-import { MediaFrame } from "@/components/media-frame";
 import { CONTACT } from "@/lib/content";
 
-const paths = [
-  {
-    href: "/unternehmen",
-    icon: Building2,
-    kicker: "Für Unternehmen",
-    title: "Personal finden",
-    subtitle: "Geprüfte Fachkräfte aus dem Westbalkan — direkt anfragen.",
-  },
-  {
-    href: "/bewerber",
-    icon: UserRound,
-    kicker: "Për kandidatë · Für Bewerber",
-    title: "Jetzt bewerben",
-    subtitle: "Apliko tani për kompani gjermane — in wenigen Minuten.",
-  },
-];
-
 const fade = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
+const companyPoints = [
+  "Geprüfte Kandidaten mit vollständigen Unterlagen",
+  "Westbalkanregelung & Visum: wir übernehmen das Verfahren",
+  "Antwort innerhalb von 24 Stunden",
+];
+
+const applicantPoints = [
+  "Apliko falas — në gjuhën tënde",
+  "Kontratë të rregullt pune në Gjermani",
+  "Të shoqërojmë deri në ditën e parë të punës",
+];
+
 export default function Home() {
   return (
-    <main className="relative flex min-h-dvh flex-col overflow-hidden">
+    <main className="relative flex min-h-dvh flex-col">
       {/* top bar */}
       <motion.header
         custom={0}
         variants={fade}
         initial="hidden"
         animate="show"
-        className="relative z-10 mx-auto flex w-[min(80rem,calc(100%-2.5rem))] items-center justify-between py-6"
+        className="mx-auto flex w-[min(76rem,calc(100%-2.5rem))] items-center justify-between py-6"
       >
         <Logo className="text-lg" />
-        <a href={CONTACT.whatsapp} className="btn btn-lime px-4 py-2 text-sm">
-          <MessageCircle className="h-4 w-4" />
-          <span className="hidden sm:inline">WhatsApp</span>
-        </a>
+        <nav className="flex items-center gap-2">
+          <Link
+            href="/unternehmen"
+            className="hidden rounded-full px-4 py-2 text-sm font-medium text-fg-muted transition-colors hover:text-fg sm:block"
+          >
+            Für Unternehmen
+          </Link>
+          <Link
+            href="/bewerber"
+            className="hidden rounded-full px-4 py-2 text-sm font-medium text-fg-muted transition-colors hover:text-fg sm:block"
+          >
+            Für Bewerber
+          </Link>
+          {CONTACT.whatsapp ? (
+            <a href={CONTACT.whatsapp} className="btn btn-ink px-4 py-2 text-sm">
+              <MessageCircle className="h-4 w-4" /> WhatsApp
+            </a>
+          ) : (
+            <a href={`mailto:${CONTACT.email}`} className="btn btn-ink px-4 py-2 text-sm">
+              Kontakt
+            </a>
+          )}
+        </nav>
       </motion.header>
 
-      {/* soft ambient tints */}
-      <div
-        className="pointer-events-none absolute right-[-8%] top-[-6%] h-[34rem] w-[34rem] rounded-full opacity-[0.18] blur-[130px]"
-        style={{ background: "var(--lime)" }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-[-10%] bottom-[-10%] h-[30rem] w-[30rem] rounded-full opacity-[0.10] blur-[130px]"
-        style={{ background: "var(--ink)" }}
-        aria-hidden
-      />
-
-      {/* hero */}
-      <section className="relative mx-auto grid w-[min(80rem,calc(100%-2.5rem))] flex-1 items-center gap-12 py-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-16">
-        {/* left: copy + audience chooser */}
-        <div>
-          <motion.span custom={1} variants={fade} initial="hidden" animate="show" className="pill">
-            <span className="pill-dot" />
-            Personalvermittlung Westbalkan → Deutschland
-          </motion.span>
-
+      <div className="mx-auto flex w-[min(76rem,calc(100%-2.5rem))] flex-1 flex-col justify-center pb-14">
+        {/* headline */}
+        <div className="py-10 text-center sm:py-14">
           <motion.h1
+            custom={1}
+            variants={fade}
+            initial="hidden"
+            animate="show"
+            className="mx-auto max-w-3xl text-balance text-4xl font-semibold leading-[1.04] tracking-tight sm:text-6xl"
+          >
+            Arbeitskräfte aus dem Westbalkan.
+            <br />
+            <span className="text-fg-subtle">Für Betriebe, die Verstärkung brauchen.</span>
+          </motion.h1>
+          <motion.p
             custom={2}
             variants={fade}
             initial="hidden"
             animate="show"
-            className="mt-6 text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
+            className="mx-auto mt-5 max-w-xl text-balance text-lg text-fg-muted"
           >
-            Menschen, die
-            <br />
-            <span className="text-lime-2">weitermachen wollen.</span>
-          </motion.h1>
-
-          <motion.p
-            custom={3}
-            variants={fade}
-            initial="hidden"
-            animate="show"
-            className="mt-6 max-w-md text-lg text-fg-muted"
-          >
-            Wir bringen deutsche Unternehmen und Fachkräfte aus Kosovo, Albanien
-            und Nordmazedonien zusammen. Sagen Sie uns, wer Sie sind.
+            WorkLink verbindet beide Seiten — rechtssicher über die
+            Westbalkanregelung, persönlich betreut in zwei Sprachen.
           </motion.p>
-
-          {/* audience chooser — editorial list */}
-          <div className="mt-9 flex flex-col gap-3">
-            {paths.map((p, i) => (
-              <motion.div key={p.href} custom={4 + i} variants={fade} initial="hidden" animate="show">
-                <ChooserRow {...p} />
-              </motion.div>
-            ))}
-          </div>
         </div>
 
-        {/* right: media placeholder with floating chips */}
+        {/* split: two distinct paths */}
+        <div className="grid gap-4 lg:grid-cols-2">
+          {/* Unternehmen — dark petrol */}
+          <motion.div custom={3} variants={fade} initial="hidden" animate="show">
+            <Link
+              href="/unternehmen"
+              className="surface-ink group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] p-8 transition-transform duration-300 hover:-translate-y-1 sm:p-10"
+            >
+              <div
+                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-25 blur-3xl"
+                style={{ background: "var(--lime)" }}
+                aria-hidden
+              />
+              <div className="flex items-center justify-between">
+                <span className="icon-badge">
+                  <Building2 className="h-6 w-6" strokeWidth={1.9} />
+                </span>
+                <span className="text-xs font-medium uppercase tracking-[0.14em] text-lime-2">
+                  Für Unternehmen
+                </span>
+              </div>
+              <h2 className="mt-8 text-3xl font-semibold tracking-tight sm:text-4xl">
+                Ich suche Personal.
+              </h2>
+              <ul className="mt-5 flex flex-col gap-2.5">
+                {companyPoints.map((p) => (
+                  <li key={p} className="flex items-start gap-2.5 text-[15px] on-ink-muted">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-lime-2" strokeWidth={2.5} />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <span className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-lime px-6 py-3 font-semibold text-on-lime transition-transform group-hover:scale-[1.03]">
+                Personal anfragen
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Bewerber — photo + lime */}
+          <motion.div custom={4} variants={fade} initial="hidden" animate="show">
+            <Link
+              href="/bewerber"
+              className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] p-8 transition-transform duration-300 hover:-translate-y-1 sm:p-10"
+            >
+              <Image
+                src="/hero.webp"
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, color-mix(in oklab, var(--ink) 88%, transparent) 8%, color-mix(in oklab, var(--ink) 45%, transparent) 45%, transparent 75%)",
+                }}
+                aria-hidden
+              />
+              <div className="relative flex items-center justify-between">
+                <span className="icon-badge">
+                  <UserRound className="h-6 w-6" strokeWidth={1.9} />
+                </span>
+                <span className="rounded-full bg-lime px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-on-lime">
+                  Për kandidatë
+                </span>
+              </div>
+              <div className="relative mt-auto pt-40 text-white">
+                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                  Dua të punoj në Gjermani.
+                </h2>
+                <ul className="mt-5 flex flex-col gap-2.5">
+                  {applicantPoints.map((p) => (
+                    <li key={p} className="flex items-start gap-2.5 text-[15px] text-white/85">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-lime" strokeWidth={2.5} />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+                <span className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-lime px-6 py-3 font-semibold text-on-lime transition-transform group-hover:scale-[1.03]">
+                  Apliko tani
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* trust strip */}
         <motion.div
-          custom={3}
+          custom={5}
           variants={fade}
           initial="hidden"
           animate="show"
-          className="relative"
+          className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-fg-subtle"
         >
-          <MediaFrame
-            src="/hero.webp"
-            alt="Fahrer aus dem Westbalkan bei der Arbeit in Deutschland"
-            aspect="aspect-[4/5]"
-            priority
-          />
-
-          {/* floating chips */}
-          <div className="absolute -left-4 bottom-8 hidden rounded-2xl border border-border bg-bg-elevated px-4 py-3 shadow-xl sm:block">
-            <div className="flex items-center gap-2 text-lime-2">
-              <Clock className="h-4 w-4" />
-              <span className="text-2xl font-semibold text-fg">24h</span>
-            </div>
-            <p className="mt-0.5 text-xs text-fg-muted">bis zur Rückmeldung</p>
-          </div>
-          <div className="absolute -right-3 top-8 hidden rounded-full border border-border bg-bg-elevated px-4 py-2 text-sm font-medium shadow-xl sm:block">
-            🇽🇰 🇦🇱 🇲🇰 <span className="text-fg-muted">· zweisprachig</span>
-          </div>
+          <span>Westbalkanregelung § 26 Abs. 2 BeschV</span>
+          <span className="hidden h-1 w-1 rounded-full bg-fg-subtle sm:block" />
+          <span>Deutsch · Shqip · Bosanski · Hrvatski</span>
+          <span className="hidden h-1 w-1 rounded-full bg-fg-subtle sm:block" />
+          <span>Antwort in 24 Stunden</span>
         </motion.div>
-      </section>
+      </div>
     </main>
-  );
-}
-
-function ChooserRow({
-  href,
-  icon: Icon,
-  kicker,
-  title,
-  subtitle,
-}: (typeof paths)[number]) {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center gap-4 rounded-2xl border border-border bg-bg-elevated p-4 transition-all hover:border-lime-2 hover:shadow-lg focus:outline-none focus-visible:border-lime-2 sm:p-5"
-    >
-      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-lime text-on-lime transition-transform group-hover:scale-105">
-        <Icon className="h-6 w-6" strokeWidth={1.9} />
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block text-xs font-medium uppercase tracking-[0.12em] text-lime-2">
-          {kicker}
-        </span>
-        <span className="mt-0.5 block text-lg font-semibold">{title}</span>
-        <span className="mt-0.5 block text-sm text-fg-muted">{subtitle}</span>
-      </span>
-      <ArrowUpRight className="h-5 w-5 shrink-0 text-fg-subtle transition-all group-hover:text-lime-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-    </Link>
   );
 }

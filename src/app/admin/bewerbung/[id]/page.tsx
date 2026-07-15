@@ -54,8 +54,8 @@ export default async function ApplicationDetail({
   const preselect: Row[] = [
     ["Beschäftigung", a.employment],
     ["Lkw-Führerschein", a.truckLicense],
+    ["Code 95", a.code95],
     ["Berufsfeld", a.field],
-    ["Amazon-Erfahrung", a.amazonExperience],
     ["Sprache", a.lang],
   ];
 

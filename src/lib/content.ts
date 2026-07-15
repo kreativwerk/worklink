@@ -1,163 +1,151 @@
 /**
- * Zentrale Inhalte (aus dem Agentur-Gashi-Bestand übernommen, neu strukturiert).
+ * Zentrale Inhalte — eigene WorkLink-Texte.
  * Deutsch = Unternehmensseite, Albanisch = Bewerberseite.
  */
 
 export const CONTACT = {
-  email: "info@kosovo-personal.com",
-  // TODO: durch den WhatsApp-Business-Link ersetzen, sobald er vorliegt.
-  whatsapp: "https://wa.me/38348119114",
-  office: "Prishtinë, Kosovo",
+  email: "info@worklink-recruiting.com",
+  // TODO: WhatsApp-Business-Link eintragen, sobald er vorliegt.
+  // Solange das Feld leer ist, werden WhatsApp-Buttons automatisch ausgeblendet.
+  whatsapp: "",
 };
 
 export type Industry = { key: string; de: string; sq: string; img: string };
 
 export const INDUSTRIES: Industry[] = [
-  { key: "medizin", de: "Medizin", sq: "Mjekësi", img: "/industries/medizin.webp" },
-  { key: "reinigung", de: "Reinigung", sq: "Pastrim", img: "/industries/reinigung.webp" },
-  { key: "kundenservice", de: "Kundenservice", sq: "Shërbim klientësh", img: "/industries/kundenservice.webp" },
-  { key: "transport", de: "Transport", sq: "Transport", img: "/industries/transport.webp" },
-  { key: "backoffice", de: "Backoffice", sq: "Backoffice", img: "/industries/backoffice.webp" },
-  { key: "marketing", de: "Marketing", sq: "Marketing", img: "/industries/marketing.webp" },
-  { key: "handwerk", de: "Handwerk", sq: "Zeje", img: "/industries/handwerk.webp" },
-  { key: "logistik", de: "Logistik", sq: "Logjistikë", img: "/industries/logistik.webp" },
-  { key: "fastfood", de: "Fast Food", sq: "Fast Food", img: "/industries/fastfood.webp" },
-  { key: "gastronomie", de: "Gastronomie", sq: "Gastronomi", img: "/industries/gastronomie.webp" },
-  { key: "industrie", de: "Industrie", sq: "Industri", img: "/industries/industrie.webp" },
-  { key: "vertrieb", de: "Vertrieb", sq: "Shitje", img: "/industries/vertrieb.webp" },
+  { key: "pflege", de: "Pflege & Medizin", sq: "Kujdes & Mjekësi", img: "/industries/medizin.webp" },
+  { key: "reinigung", de: "Gebäudereinigung", sq: "Pastrim profesional", img: "/industries/reinigung.webp" },
+  { key: "service", de: "Callcenter & Service", sq: "Qendër thirrjesh", img: "/industries/kundenservice.webp" },
+  { key: "transport", de: "Transport & Fahrer", sq: "Transport & Shoferë", img: "/industries/transport.webp" },
+  { key: "buero", de: "Büro & Verwaltung", sq: "Zyrë & Administratë", img: "/industries/backoffice.webp" },
+  { key: "marketing", de: "Marketing & Medien", sq: "Marketing & Media", img: "/industries/marketing.webp" },
+  { key: "handwerk", de: "Bau & Handwerk", sq: "Ndërtim & Zeje", img: "/industries/handwerk.webp" },
+  { key: "logistik", de: "Lager & Logistik", sq: "Depo & Logjistikë", img: "/industries/logistik.webp" },
+  { key: "systemgastro", de: "Systemgastronomie", sq: "Gastronomi e shpejtë", img: "/industries/fastfood.webp" },
+  { key: "hotel", de: "Hotel & Gastronomie", sq: "Hotel & Gastronomi", img: "/industries/gastronomie.webp" },
+  { key: "produktion", de: "Produktion & Industrie", sq: "Prodhim & Industri", img: "/industries/industrie.webp" },
+  { key: "handel", de: "Handel & Vertrieb", sq: "Tregti & Shitje", img: "/industries/vertrieb.webp" },
 ];
 
 /** Warum Fachkräfte aus dem Westbalkan (Unternehmensseite). */
-export const WHY_BALKAN = [
+export const WHY_POINTS = [
   {
-    title: "Jung und dynamisch",
-    text: "Die Länder des Westbalkans zählen zu den jüngsten Bevölkerungen Europas. Diese Arbeitskräfte sind technologisch versiert und bringen eine natürliche Affinität für digitale Werkzeuge mit.",
+    title: "Junge Jahrgänge, echte Motivation",
+    text: "Während Deutschland altert, wächst im Westbalkan eine junge Generation heran, die im Ausland etwas aufbauen will. Wer sich bei uns bewirbt, hat sich bewusst für Deutschland entschieden.",
   },
   {
-    title: "Motivation und Engagement",
-    text: "Aufgrund der wirtschaftlichen Lage im Westbalkan sind viele Menschen hoch motiviert, im Ausland zu arbeiten. Das führt zu hohem Engagement und Loyalität gegenüber Arbeitgebern.",
+    title: "Deutsch ist dort kein Fremdwort",
+    text: "Fast jede Familie in der Region hat Verwandte in Deutschland, Österreich oder der Schweiz. Viele Kandidaten bringen Sprachkenntnisse und ein realistisches Bild vom Arbeitsalltag mit.",
   },
   {
-    title: "Starke Arbeitsmoral",
-    text: "Kultur und Erziehung legen großen Wert auf Disziplin, Pflichtbewusstsein und Engagement. Fachkräfte aus der Region arbeiten hart und mit Entschlossenheit an ihren Zielen.",
+    title: "Zupacken gehört zur Kultur",
+    text: "Handwerkliches Können und Verlässlichkeit haben in der Region einen hohen Stellenwert. Unsere Kandidaten wollen bleiben und sich beweisen — nicht nur eine Saison überbrücken.",
   },
   {
-    title: "Wirtschaftliche Vorteile",
-    text: "Die Integration bietet signifikante wirtschaftliche Vorteile durch günstigere Lohnkosten, höhere Flexibilität und Bereitschaft für vielseitige Aufgaben.",
+    title: "Rechtlich klar geregelt",
+    text: "Die Westbalkanregelung schafft einen sauberen, planbaren Weg zur Beschäftigung — auch ohne formale Anerkennung eines Berufsabschlusses. Wir kennen das Verfahren im Detail.",
   },
 ];
 
-/** Drei Kernversprechen (Unternehmensseite). */
+/** Kernversprechen (Unternehmensseite). */
 export const PROMISES = [
   {
-    title: "Faire Konditionen",
-    text: "Transparenz und klare Konditionen für Unternehmen und Arbeitskräfte – keine versteckten Gebühren.",
+    title: "Ein fester Ansprechpartner",
+    text: "Keine Hotline, kein Ticketsystem: Von der ersten Anfrage bis zum Arbeitsbeginn betreut Sie durchgehend dieselbe Person.",
   },
   {
-    title: "Deutscher Support",
-    text: "Deutschsprachige Ansprechpartner, klare Antworten und saubere Abwicklung vom Erstgespräch bis zum Start.",
+    title: "Transparent kalkuliert",
+    text: "Sie wissen vor der Zusammenarbeit, was sie kostet — ohne Kleingedrucktes und ohne Überraschungen im Nachgang.",
   },
   {
-    title: "Einfache Kommunikation",
-    text: "Kulturelle und sprachliche Nähe sorgt für reibungslose Zusammenarbeit – vom ersten Anruf bis zum Arbeitsalltag.",
+    title: "Zwei Sprachen, kurze Wege",
+    text: "Wir sprechen Deutsch mit Ihnen und Albanisch mit den Kandidaten. Missverständnisse werden gelöst, bevor sie entstehen.",
   },
 ];
 
 /** Kernversprechen auf Albanisch (Bewerberseite). */
 export const PROMISES_SQ = [
   {
-    title: "Kushte të drejta",
-    text: "Transparencë dhe kushte të drejta për punëdhënës dhe punëkërkues – pa tarifa të fshehura.",
+    title: "Një person përgjegjës për ty",
+    text: "Nga aplikimi deri në ditën e parë të punës të shoqëron i njëjti kontakt — pa u humbur nëpër zyra.",
   },
   {
-    title: "Gjermanisht & Shqip",
-    text: "Mbështetje në të dy gjuhët – çdo hap i qartë, nga biseda e parë deri në fillimin e punës.",
+    title: "Pa kosto për kandidatët",
+    text: "Aplikimi dhe ndërmjetësimi janë falas për ty. Kushtet i sheh qartë që në fillim.",
   },
   {
-    title: "Përpunim i shpejtë",
-    text: "Procese të optimizuara, vendosje e shpejtë dhe e sigurt e kandidatëve – pa humbje kohe.",
+    title: "Shqip dhe gjermanisht",
+    text: "Flasim gjuhën tënde dhe atë të punëdhënësit — çdo hap të shpjegohet qartë.",
   },
 ];
 
-/** Ablauf in 5 Schritten (Unternehmensseite). */
+/** Ablauf (Unternehmensseite). */
 export const PROCESS = [
   {
     no: "01",
-    title: "Anfrage",
-    text: "Sie kontaktieren uns mit Ihrem Personalbedarf – Branche, Qualifikationen, Anzahl und gewünschter Starttermin. Wir klären im Erstgespräch alle offenen Punkte.",
+    title: "Bedarf verstehen",
+    text: "Im Erstgespräch klären wir Positionen, Anforderungen, Zeitrahmen und Konditionen — damit wir gezielt suchen statt breit zu streuen.",
   },
   {
     no: "02",
-    title: "Kandidatensuche",
-    text: "Wir screenen unseren Pool in Prishtina, führen persönliche Vorgespräche und stellen Ihnen nur Profile vor, die wirklich zu Ihren Anforderungen passen.",
+    title: "Kandidaten vorstellen",
+    text: "Sie erhalten geprüfte Profile inklusive Dokumenten und Sprachstand. Interviews organisieren wir per Video, auf Wunsch mit Dolmetscher.",
   },
   {
     no: "03",
-    title: "Unterlagen",
-    text: "Lebenslauf, Zeugnisse, Reisepass, Arbeitsvertrag und alles Notwendige für die Vorabzustimmung der Bundesagentur für Arbeit – wir bereiten die Unterlagen mit Ihnen vor.",
+    title: "Unterlagen & Vorabzustimmung",
+    text: "Arbeitsvertrag, Stellenbeschreibung, Antrag bei der Bundesagentur für Arbeit: Wir bereiten alles vor und begleiten Sie durch das Verfahren.",
   },
   {
     no: "04",
-    title: "Bis zur Ankunft",
-    text: "Wir begleiten den Visumsprozess bei der Deutschen Botschaft in Pristina, koordinieren die Anreise und sorgen dafür, dass Ihr neuer Mitarbeiter pünktlich starten kann.",
+    title: "Visum & Anreise",
+    text: "Wir koordinieren Botschaftstermin, Visumsantrag und Anreise, damit der Starttermin hält.",
   },
   {
     no: "05",
-    title: "Auch danach für Sie da",
-    text: "Nach der Ankunft bleiben wir für Kandidat und Unternehmen zweisprachig erreichbar – bei Rückfragen zu Arbeitsalltag, Behördengängen oder Integration.",
+    title: "Ankommen & bleiben",
+    text: "Auch nach dem ersten Arbeitstag bleiben wir für beide Seiten erreichbar — bei Behördengängen, Wohnungssuche oder Fragen im Alltag.",
   },
 ];
 
 export const FAQ = [
   {
-    q: "Wie funktioniert die Einstellung von Personal aus dem Westbalkan?",
-    a: "Über die Westbalkanregelung können deutsche Unternehmen Arbeitskräfte aus Kosovo, Albanien und Nordmazedonien einstellen – auch ohne formale Berufsausbildung und unabhängig von der konkreten Tätigkeit. Wir übernehmen die Kandidatensuche, bereiten alle Unterlagen vor und begleiten Sie durch das Vorabzustimmungs- und Visumverfahren.",
+    q: "Auf welcher rechtlichen Grundlage stellen wir Personal aus dem Westbalkan ein?",
+    a: "Grundlage ist die Westbalkanregelung (§ 26 Abs. 2 BeschV). Sie erlaubt deutschen Unternehmen die Einstellung von Staatsangehörigen aus Kosovo, Albanien, Nordmazedonien, Serbien, Bosnien-Herzegowina und Montenegro — für jede Art von Tätigkeit, auch ohne anerkannten Berufsabschluss.",
   },
   {
-    q: "Was kostet die Vermittlung für mein Unternehmen?",
-    a: "Unsere Vermittlung ist für deutsche Unternehmen komplett kostenlos. Es fallen keine Vermittlungsgebühren, keine Provisionen und keine versteckten Kosten an. Sie zahlen ausschließlich das Gehalt Ihres neuen Mitarbeiters.",
+    q: "Was kostet uns die Zusammenarbeit?",
+    a: "Sie zahlen eine vorab vereinbarte Vermittlungspauschale und das Gehalt Ihres neuen Mitarbeiters. Alle Konditionen stehen im Angebot, bevor Sie sich binden — versteckte Gebühren gibt es bei uns nicht.",
   },
   {
-    q: "Wie lange dauert das Visumverfahren für Kandidaten aus dem Westbalkan?",
-    a: "Das lässt sich seriös nicht auf Wochen genau sagen. Die Westbalkanstaaten haben zwar ähnliche Kontingente, aber gerade im Kosovo ist die Nachfrage besonders hoch. Deshalb sollten Sie die Einstellung als langfristige Investition planen – nicht als kurzfristige Lückenfüllung.",
+    q: "Wie lange dauert es vom Auftrag bis zum ersten Arbeitstag?",
+    a: "Profile erhalten Sie meist innerhalb weniger Tage. Der Gesamtprozess hängt vor allem vom Visumverfahren ab und ist realistisch in Monaten zu denken, nicht in Wochen. Planen Sie die Einstellung deshalb als Aufbau von Personal, nicht als kurzfristige Aushilfe.",
   },
   {
-    q: "Was passiert, wenn die Vorabzustimmung da ist, mein Bedarf aber weggefallen ist?",
-    a: "Kein Problem. Die Vorabzustimmung der Bundesagentur für Arbeit ist ca. 9 Monate gültig. Sie müssen den Kandidaten also nicht sofort einstellen, sondern können das Visumverfahren starten, sobald Ihr Bedarf wieder konkret ist.",
+    q: "Muss der Kandidat einen anerkannten Berufsabschluss haben?",
+    a: "Nein. Die Westbalkanregelung setzt keine formale Anerkennung voraus. Ausnahme sind reglementierte Berufe wie die Pflege — dort gelten eigene Anerkennungsverfahren, zu denen wir Sie gesondert beraten.",
   },
   {
-    q: "Wann genau muss der Mitarbeiter nach Visumserteilung einreisen?",
-    a: "Die meisten Visa sind zu Beginn ca. 6 Monate gültig – das verschafft Ihnen Spielraum, Probezeit und Arbeitsbeginn flexibel zu planen. Der genaue Einreisezeitpunkt lässt sich an Ihren Einsatzplan anpassen.",
+    q: "Welche Unterlagen müssen wir als Arbeitgeber beisteuern?",
+    a: "Im Kern: ein konkretes Arbeitsplatzangebot oder einen Arbeitsvertrag sowie Angaben zu Tätigkeit, Gehalt und Arbeitszeit. Die Anträge bei der Bundesagentur für Arbeit bereiten wir gemeinsam mit Ihnen vor.",
   },
   {
-    q: "Müssen die Kandidaten Deutsch sprechen?",
-    a: "Viele unserer Kandidaten haben gute bis sehr gute Deutschkenntnisse – Deutsch wird im Westbalkan an vielen Schulen unterrichtet, und die große Diaspora in Deutschland hat Spuren hinterlassen. Wir schlagen Ihnen gezielt Profile vor, die zu Ihren sprachlichen Anforderungen passen.",
+    q: "Was ist die Vorabzustimmung und wie lange ist sie gültig?",
+    a: "Mit der Vorabzustimmung bestätigt die Bundesagentur für Arbeit vorab, dass der Beschäftigung nichts entgegensteht — das beschleunigt das Visumverfahren deutlich. Sie ist mehrere Monate gültig; verschiebt sich Ihr Bedarf, verfällt sie also nicht sofort.",
   },
   {
-    q: "Brauche ich eine anerkannte Berufsausbildung des Kandidaten?",
-    a: "Nein. Die Westbalkanregelung erlaubt auch die Beschäftigung ohne formale Anerkennung der Berufsqualifikation – unabhängig davon, ob qualifizierte oder unqualifizierte Tätigkeiten. Reglementierte Berufe (z. B. Pflege oder Medizin) haben eigene Anforderungen, auf die wir gesondert eingehen.",
+    q: "Wie gut sprechen die Kandidaten Deutsch?",
+    a: "Das ist unterschiedlich — und genau deshalb erfassen wir den Sprachstand jedes Kandidaten und schlagen Ihnen nur Profile vor, die zu Ihren Anforderungen passen. Für viele Tätigkeiten reicht ein solides Grundniveau, das sich im Betrieb schnell ausbaut.",
   },
   {
-    q: "Welche Unterlagen muss ich als Arbeitgeber bereitstellen?",
-    a: "In der Regel: ein verbindliches Arbeitsplatzangebot oder einen Arbeitsvertrag, eine Stellenbeschreibung sowie Angaben zu Gehalt und Arbeitsbedingungen. Die formalen Anträge bei der Bundesagentur für Arbeit und der Ausländerbehörde bereiten wir gemeinsam mit Ihnen vor.",
-  },
-  {
-    q: "Wer beantragt die Vorabzustimmung bei der Bundesagentur für Arbeit?",
-    a: "Die Vorabzustimmung wird durch das einstellende Unternehmen beantragt. Wir stellen Ihnen alle notwendigen Kandidatenunterlagen zusammen und unterstützen Sie beim Ausfüllen des elektronischen Antrags im Arbeitgeber-Portal der Bundesagentur.",
-  },
-  {
-    q: "Was passiert nach der Ankunft in Deutschland?",
-    a: "Wir bleiben auch nach der Einreise ansprechbar – für Sie und für den Kandidaten. Bei Fragen zu Anmeldung, Aufenthaltstitel, Arbeitsalltag oder Integration helfen wir zweisprachig (Deutsch und Albanisch) weiter.",
-  },
-  {
-    q: "Wie viele Kandidaten kann ich gleichzeitig einstellen?",
-    a: "Ob eine einzelne Fachkraft oder ein ganzes Team – wir vermitteln sowohl Einzelbesetzungen als auch größere Kontingente. Sprechen Sie uns mit Ihrem Bedarf an, wir stimmen Timing und Umfang individuell mit Ihnen ab.",
+    q: "Was passiert nach der Einreise?",
+    a: "Wir lassen weder Sie noch den Kandidaten allein: Anmeldung, Aufenthaltstitel, Kontoeröffnung, Fragen im Alltag — wir bleiben zweisprachig ansprechbar, bis der neue Mitarbeiter wirklich angekommen ist.",
   },
 ];
 
 export const STATS = [
-  { value: "12", suffix: "", label: "Branchen mit akutem Bedarf" },
-  { value: "24", suffix: "h", label: "Antwort auf Ihre Anfrage" },
-  { value: "0", suffix: "€", label: "Vermittlungsgebühr für Unternehmen" },
-  { value: "2", suffix: "-sprachig", label: "Support: Deutsch & Albanisch" },
+  { value: "12", suffix: "", label: "Branchen, für die wir rekrutieren" },
+  { value: "24", suffix: "h", label: "Reaktionszeit auf Ihre Anfrage" },
+  { value: "6", suffix: "", label: "Länder der Westbalkanregelung" },
+  { value: "2", suffix: "", label: "Sprachen: Deutsch & Albanisch" },
 ];

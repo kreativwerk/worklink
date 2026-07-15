@@ -14,16 +14,16 @@ import {
   SiteFooter,
 } from "@/components/marketing";
 import { FaqAccordion } from "@/components/faq";
-import { WHY_BALKAN, PROMISES, PROCESS, CONTACT } from "@/lib/content";
+import { WHY_POINTS, PROMISES, PROCESS, CONTACT } from "@/lib/content";
 import { CompanyForm } from "./company-form";
 
 export const metadata: Metadata = {
   title: "Für Unternehmen — WorkLink",
   description:
-    "Stellen Sie eine Personalanfrage und erhalten Sie qualifizierte Fachkräfte aus dem Westbalkan. Vermittlung für Unternehmen komplett kostenlos.",
+    "Fachkräfte aus dem Westbalkan für deutsche Betriebe — geprüft, dokumentiert und durch das komplette Visumverfahren begleitet.",
 };
 
-const heroPerks = ["Faire Konditionen", "Deutscher Support", "Komplett kostenfrei"];
+const heroPerks = ["Fester Ansprechpartner", "Transparente Konditionen", "Antwort in 24h"];
 
 export default function UnternehmenPage() {
   return (
@@ -46,9 +46,9 @@ export default function UnternehmenPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-lg text-lg text-fg-muted">
-                Wir verbinden deutsche Unternehmen mit Personal aus dem
-                Westbalkan – Kosovo, Albanien und Nordmazedonien. Direkt, sauber
-                und ohne Zwischenhändler-Kette.
+                WorkLink rekrutiert Fachkräfte und Arbeitskräfte aus dem
+                Westbalkan für deutsche Betriebe — geprüft, dokumentiert und
+                durch das komplette Visumverfahren begleitet.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
@@ -56,9 +56,11 @@ export default function UnternehmenPage() {
                 <a href="#anfrage" className="btn btn-lime">
                   Zur Anfrage
                 </a>
-                <a href={CONTACT.whatsapp} className="btn btn-outline">
-                  <MessageCircle className="h-4 w-4" /> WhatsApp
-                </a>
+                {CONTACT.whatsapp && (
+                  <a href={CONTACT.whatsapp} className="btn btn-outline">
+                    <MessageCircle className="h-4 w-4" /> WhatsApp
+                  </a>
+                )}
               </div>
             </Reveal>
             <Reveal delay={0.2}>
@@ -97,7 +99,7 @@ export default function UnternehmenPage() {
         <SectionHeading
           pill="Branchen"
           title="Für diese Branchen vermitteln wir"
-          intro="Vom Pflegeheim bis zum Fulfillment-Zentrum: Wir finden passende Kräfte für die Branchen, in denen Deutschland am dringendsten Personal sucht."
+          intro="Ob Pflege, Lager oder Baustelle: Wir besetzen die Bereiche, in denen der Arbeitsmarkt am engsten ist — mit Menschen, die bleiben wollen."
         />
         <div className="mt-10">
           <IndustryGrid lang="de" />
@@ -109,11 +111,11 @@ export default function UnternehmenPage() {
         <div className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16 lg:py-24">
           <SectionHeading
             pill="Fachkräfte aus dem Westbalkan"
-            title="Warum Personal aus der Region?"
-            intro="Wir machen diese Verbindung für Sie nutzbar – jung, motiviert und mit starker Arbeitsmoral."
+            title="Warum der Westbalkan?"
+            intro="Vier Gründe, warum die Region für deutsche Arbeitgeber so gut funktioniert."
           />
           <div className="mt-12 grid gap-4 md:grid-cols-2">
-            {WHY_BALKAN.map((w, i) => (
+            {WHY_POINTS.map((w, i) => (
               <Reveal key={w.title} delay={(i % 2) * 0.08}>
                 <div className="rounded-[var(--radius-card)] border border-border bg-bg-elevated p-7">
                   <h3 className="text-xl font-semibold text-lime-2">{w.title}</h3>
@@ -132,8 +134,8 @@ export default function UnternehmenPage() {
       <section id="ablauf" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16 lg:py-24">
         <SectionHeading
           pill="Ablauf"
-          title="In 5 Schritten zum Ziel"
-          intro="Von der ersten Anfrage bis zur Ankunft in Deutschland – inklusive Westbalkanregelung und Vorabzustimmung bei der Bundesagentur für Arbeit."
+          title="So arbeiten wir mit Ihnen"
+          intro="Ein klarer Prozess von der Anfrage bis zum ersten Arbeitstag — wir übernehmen Verfahren, Behördenanträge und Koordination."
         />
         <div className="mt-10">
           <ProcessTimeline steps={PROCESS} />
@@ -144,7 +146,7 @@ export default function UnternehmenPage() {
       <section id="vorteile" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-8 pb-16">
         <SectionHeading
           pill="Ihre Vorteile"
-          title="Drei Dinge, auf die Sie sich verlassen können"
+          title="Worauf Sie bei WorkLink zählen können"
         />
         <div className="mt-10">
           <Promises items={PROMISES} />
@@ -155,8 +157,8 @@ export default function UnternehmenPage() {
       <section id="faq" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16">
         <SectionHeading
           pill="FAQ"
-          title="Das fragen Unternehmen am häufigsten"
-          intro="Alles Wichtige zur Einstellung von Personal aus dem Westbalkan – von der Westbalkanregelung bis zur Ankunft in Deutschland."
+          title="Häufige Fragen von Arbeitgebern"
+          intro="Die häufigsten Fragen zur Einstellung über die Westbalkanregelung — kompakt beantwortet."
         />
         <div className="mt-10">
           <FaqAccordion />
@@ -178,10 +180,15 @@ export default function UnternehmenPage() {
               konkreten nächsten Schritten zurück.
             </p>
             <div className="mt-6 flex flex-col gap-3">
-              <a href={CONTACT.whatsapp} className="btn btn-lime w-full">
-                <MessageCircle className="h-4 w-4" /> WhatsApp öffnen
-              </a>
-              <a href={`mailto:${CONTACT.email}`} className="btn btn-outline w-full">
+              {CONTACT.whatsapp && (
+                <a href={CONTACT.whatsapp} className="btn btn-lime w-full">
+                  <MessageCircle className="h-4 w-4" /> WhatsApp öffnen
+                </a>
+              )}
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className={CONTACT.whatsapp ? "btn btn-outline w-full" : "btn btn-lime w-full"}
+              >
                 {CONTACT.email}
               </a>
             </div>
@@ -194,7 +201,7 @@ export default function UnternehmenPage() {
       <section className="mx-auto w-[min(72rem,calc(100%-2rem))] pb-20">
         <ContactCTA
           title="Kontaktieren Sie uns!"
-          intro="Ein Anruf reicht. Wir melden uns innerhalb von 24 Stunden mit konkreten nächsten Schritten zurück."
+          intro="Schreiben Sie uns — Sie erhalten innerhalb von 24 Stunden eine konkrete Rückmeldung."
         />
       </section>
 

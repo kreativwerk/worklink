@@ -42,7 +42,7 @@ type Step =
   | { kind: "documents"; section: string }
   | { kind: "consent"; section: string };
 
-function buildSteps(t: (typeof DICT)[Lang]): Step[] {
+function buildSteps(t: (typeof DICT)[Lang], hasTruck: boolean): Step[] {
   const yn = [
     { value: "Ja", label: t.yes },
     { value: "Nein", label: t.no },
@@ -59,6 +59,10 @@ function buildSteps(t: (typeof DICT)[Lang]): Step[] {
       ],
     },
     { kind: "single", key: "truckLicense", question: t.q_truck, options: yn },
+    // Nachfrage nur, wenn ein Lkw-Führerschein vorhanden ist.
+    ...(hasTruck
+      ? [{ kind: "single", key: "code95", question: t.q_code95, options: yn } as Step]
+      : []),
     {
       kind: "single",
       key: "field",
@@ -66,7 +70,6 @@ function buildSteps(t: (typeof DICT)[Lang]): Step[] {
       grid: true,
       options: INDUSTRIES.map((i) => ({ value: i.de, label: i.de })),
     },
-    { kind: "single", key: "amazon", question: t.q_amazon, options: yn },
     {
       kind: "fields",
       section: t.sec_identity,
@@ -119,7 +122,8 @@ export function ApplyWizard() {
   );
 
   const t = DICT[lang ?? "sq"];
-  const steps = useMemo(() => buildSteps(t), [t]);
+  const hasTruck = data.truckLicense === "Ja";
+  const steps = useMemo(() => buildSteps(t, hasTruck), [t, hasTruck]);
   const total = steps.length;
   const step = steps[index];
 
@@ -131,7 +135,12 @@ export function ApplyWizard() {
   const goBack = () => go(Math.max(index - 1, 0), -1);
 
   function pickSingle(key: string, value: string) {
-    setData((d) => ({ ...d, [key]: value }));
+    setData((d) => {
+      const next = { ...d, [key]: value };
+      // Ohne Lkw-Führerschein entfällt die Code-95-Nachfrage samt Antwort.
+      if (key === "truckLicense" && value === "Nein") delete next.code95;
+      return next;
+    });
     // auto-advance on single choice
     window.setTimeout(advance, 220);
   }

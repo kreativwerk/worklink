@@ -33,7 +33,7 @@ type Dict = {
   employment_part: string;
   q_truck: string;
   q_field: string;
-  q_amazon: string;
+  q_code95: string;
   // identity
   sec_identity: string;
   firstName: string;
@@ -92,7 +92,7 @@ export const DICT: Record<Lang, Dict> = {
     employment_part: "Kohë e pjesshme",
     q_truck: "A ke patentë kamioni (Lkw)?",
     q_field: "Në cilën fushë dëshiron të punosh?",
-    q_amazon: "A ke përvojë si Amazon partner ose shofer?",
+    q_code95: "A e ke Kodin 95 (kualifikimi profesional për shoferë)?",
     sec_identity: "Të dhënat personale",
     firstName: "Emri",
     lastName: "Mbiemri",
@@ -146,7 +146,7 @@ export const DICT: Record<Lang, Dict> = {
     employment_part: "Skraćeno radno vrijeme",
     q_truck: "Imaš li vozačku za kamion (Lkw)?",
     q_field: "U kojem području želiš raditi?",
-    q_amazon: "Imaš li iskustva kao Amazon partner ili vozač?",
+    q_code95: "Imaš li Kod 95 (kvalifikacija profesionalnog vozača)?",
     sec_identity: "Lični podaci",
     firstName: "Ime",
     lastName: "Prezime",
@@ -200,7 +200,7 @@ export const DICT: Record<Lang, Dict> = {
     employment_part: "Skraćeno radno vrijeme",
     q_truck: "Imaš li vozačku za kamion (Lkw)?",
     q_field: "U kojem području želiš raditi?",
-    q_amazon: "Imaš li iskustva kao Amazon partner ili vozač?",
+    q_code95: "Imaš li Kod 95 (kvalifikacija profesionalnog vozača)?",
     sec_identity: "Osobni podaci",
     firstName: "Ime",
     lastName: "Prezime",

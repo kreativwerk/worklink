@@ -27,10 +27,10 @@ model Application {
   lang   String?
 
   // Vorauswahl
-  employment      String?
-  truckLicense    String?
-  field           String?
-  amazonExperience String?
+  employment   String?
+  truckLicense String?
+  code95       String? // nur relevant, wenn truckLicense = "Ja"
+  field        String?
 
   // Identität
   firstName      String
