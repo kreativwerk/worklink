@@ -75,6 +75,21 @@ docker compose up -d --build  # App, PostgreSQL, Caddy (HTTPS automatisch)
 - Hochgeladene Dokumente liegen im Volume `uploads` (`/data/uploads`).
 - Caddy holt automatisch ein Let's-Encrypt-Zertifikat für `DOMAIN`.
 
+### Automatisches Deployment
+
+Ein Cron-Wächter prüft alle 3 Minuten auf neue Commits und deployt sie
+selbstständig (`scripts/deploy-if-changed.sh`). Einrichtung (einmalig):
+
+```bash
+cd ~/worklink && git pull && chmod +x scripts/deploy-if-changed.sh && \
+(crontab -l 2>/dev/null | grep -v deploy-if-changed; \
+ echo "*/3 * * * * /root/worklink/scripts/deploy-if-changed.sh >> /var/log/worklink-deploy.log 2>&1") | crontab - && \
+echo "Auto-Deploy aktiv"
+```
+
+- Log ansehen: `tail -20 /var/log/worklink-deploy.log`
+- Deaktivieren: `crontab -e` und die Zeile mit `deploy-if-changed` löschen
+
 **Backups (wichtig):** regelmäßig sichern
 ```bash
 docker compose exec db pg_dump -U "$POSTGRES_USER" "$POSTGRES_DB" > backup.sql   # DB
