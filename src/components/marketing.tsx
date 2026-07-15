@@ -227,7 +227,7 @@ export function SiteFooter() {
         </div>
       </div>
       <p className="mt-6 text-center text-xs text-fg-subtle">
-        © 2026 WorkLink · Vermittlung von Fachkräften aus dem Westbalkan
+        © 2026 WorkLink · Vermittlung von Arbeitskräften aus dem Westbalkan
       </p>
     </footer>
   );

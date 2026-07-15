@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WorkLink — Fachkräfte aus dem Westbalkan",
+  title: "WorkLink — Arbeitskräfte aus dem Westbalkan",
   description:
-    "WorkLink verbindet deutsche Unternehmen mit qualifizierten Fachkräften aus dem Westbalkan. Unternehmen stellen Personalanfragen, Bewerber bewerben sich in Minuten.",
+    "WorkLink verbindet deutsche Unternehmen mit motivierten Arbeitskräften aus dem Westbalkan. Unternehmen stellen Personalanfragen, Bewerber bewerben sich in Minuten.",
   metadataBase: new URL("https://worklink-recruiting.com"),
   openGraph: {
-    title: "WorkLink — Fachkräfte aus dem Westbalkan",
+    title: "WorkLink — Arbeitskräfte aus dem Westbalkan",
     description:
       "Personalvermittlung neu gedacht. Unternehmen und Bewerber auf einer Plattform.",
     type: "website",

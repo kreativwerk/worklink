@@ -3,15 +3,9 @@
 import { useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button, Field, Input, Select, Textarea } from "@/components/form";
+import { INDUSTRIES } from "@/lib/content";
 
-const branchen = [
-  "Logistik & Transport",
-  "Pflege & Gesundheit",
-  "Bau & Handwerk",
-  "Gastronomie & Hotel",
-  "Produktion & Industrie",
-  "Sonstiges",
-];
+const branchen = [...INDUSTRIES.map((i) => i.de), "Sonstiges"];
 
 export function CompanyForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">(
@@ -78,7 +72,7 @@ export function CompanyForm() {
             ))}
           </Select>
         </Field>
-        <Field label="Anzahl benötigter Fachkräfte" htmlFor="headcount">
+        <Field label="Anzahl benötigter Arbeitskräfte" htmlFor="headcount">
           <Input id="headcount" name="headcount" type="number" min={1} placeholder="z. B. 5" />
         </Field>
         <Field label="Ihre Personalanfrage" htmlFor="message" className="sm:col-span-2" required>

@@ -19,7 +19,7 @@ import { CompanyForm } from "./company-form";
 export const metadata: Metadata = {
   title: "Für Unternehmen — WorkLink",
   description:
-    "Fachkräfte aus dem Westbalkan für deutsche Betriebe — geprüft, dokumentiert und durch das komplette Visumverfahren begleitet.",
+    "Arbeitskräfte aus dem Westbalkan für deutsche Betriebe — geprüft, dokumentiert und durch das komplette Visumverfahren begleitet.",
 };
 
 const heroPerks = ["Fester Ansprechpartner", "Transparente Konditionen", "Antwort in 24h"];
@@ -38,14 +38,14 @@ export default function UnternehmenPage() {
             </Reveal>
             <Reveal delay={0.05}>
               <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
-                Die richtigen Fachkräfte.
+                Die richtigen Arbeitskräfte.
                 <br />
                 <span className="text-ink">Ohne den Aufwand.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-lg text-lg text-fg-muted">
-                WorkLink rekrutiert Fachkräfte und Arbeitskräfte aus dem
+                WorkLink rekrutiert Arbeitskräfte aus dem
                 Westbalkan für deutsche Betriebe — geprüft, dokumentiert und
                 durch das komplette Visumverfahren begleitet.
               </p>
@@ -121,7 +121,7 @@ export default function UnternehmenPage() {
             aria-hidden
           />
           <SectionHeading
-            pill="Fachkräfte aus dem Westbalkan"
+            pill="Arbeitskräfte aus dem Westbalkan"
             title="Warum der Westbalkan?"
             intro="Vier Gründe, warum die Region für deutsche Arbeitgeber so gut funktioniert."
           />

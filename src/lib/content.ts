@@ -27,7 +27,7 @@ export const INDUSTRIES: Industry[] = [
   { key: "handel", de: "Handel & Vertrieb", sq: "Tregti & Shitje" },
 ];
 
-/** Warum Fachkräfte aus dem Westbalkan (Unternehmensseite). */
+/** Warum Arbeitskräfte aus dem Westbalkan (Unternehmensseite). */
 export const WHY_POINTS = [
   {
     title: "Junge Jahrgänge, echte Motivation",
