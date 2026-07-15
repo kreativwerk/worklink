@@ -43,4 +43,5 @@ next-env.d.ts
 # WorkLink
 .env
 .env*.local
+!.env.example
 /.data
