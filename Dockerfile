@@ -10,7 +10,8 @@ FROM base AS deps
 COPY package.json package-lock.json ./
 COPY prisma ./prisma
 COPY prisma.config.ts ./prisma.config.ts
-RUN npm ci
+# --ignore-scripts: postinstall (prisma generate) läuft gezielt im Build-Stage.
+RUN npm ci --ignore-scripts
 
 # --- build ---
 FROM base AS build
