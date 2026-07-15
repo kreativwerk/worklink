@@ -38,7 +38,7 @@ export function CompanyForm() {
   if (status === "done") {
     return (
       <div className="glass flex flex-col items-center rounded-[var(--radius-glass)] p-10 text-center">
-        <CheckCircle2 className="h-12 w-12 text-company" strokeWidth={1.6} />
+        <CheckCircle2 className="h-12 w-12 text-lime-2" strokeWidth={1.6} />
         <h3 className="mt-4 text-2xl font-semibold">Anfrage erhalten</h3>
         <p className="mt-2 max-w-sm text-fg-muted">
           Vielen Dank. Unser Team meldet sich innerhalb von 24 Stunden mit

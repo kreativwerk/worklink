@@ -6,8 +6,13 @@ Westbalkan** verbindet. Die Landingpage teilt Besucher direkt in zwei Pfade:
 - **Unternehmen** (`/unternehmen`) — Personalanfrage stellen, Fachkräfte finden.
 - **Bewerber** (`/bewerber`) — in Minuten bei deutschen Firmen bewerben, inkl. CV-Upload.
 
-Futuristisches, Apple-orientiertes Design (Glasflächen, Verläufe, große Typo,
-Light-/Dark-Mode), zweisprachige Akzente (Deutsch / Albanisch).
+Modernes Agentur-/Consulting-Design (dunkles Petrol + Lime-Akzent, Pill-Labels,
+Stat-Kacheln, abgerundete Karten, Light-/Dark-Mode, Scroll-Animationen),
+zweisprachige Inhalte (Deutsch / Albanisch).
+
+Die Marketing-Inhalte (Branchen, Vorteile, 5-Schritte-Ablauf, FAQ, Kontakt)
+stammen strukturell aus dem Agentur-Gashi-Bestand und liegen zentral in
+`src/lib/content.ts`. Branchen-Bilder und Landkarten unter `public/`.
 
 ## Tech-Stack
 

@@ -37,7 +37,7 @@ export function ApplicantForm() {
   if (status === "done") {
     return (
       <div className="glass flex flex-col items-center rounded-[var(--radius-glass)] p-10 text-center">
-        <CheckCircle2 className="h-12 w-12 text-applicant" strokeWidth={1.6} />
+        <CheckCircle2 className="h-12 w-12 text-lime-2" strokeWidth={1.6} />
         <h3 className="mt-4 text-2xl font-semibold">Bewerbung gesendet</h3>
         <p className="mt-2 max-w-sm text-fg-muted">
           Faleminderit! Wir prüfen Ihre Unterlagen und melden uns mit passenden
@@ -105,9 +105,9 @@ export function ApplicantForm() {
         <Field label="Lebenslauf (CV)" htmlFor="cv" className="sm:col-span-2" hint="PDF, JPG oder PNG — max. 10 MB">
           <label
             htmlFor="cv"
-            className="flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-border bg-bg-elevated/40 px-4 py-4 text-sm transition-colors hover:border-applicant"
+            className="flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-border bg-bg-elevated/40 px-4 py-4 text-sm transition-colors hover:border-lime-2"
           >
-            <Upload className="h-5 w-5 text-applicant" />
+            <Upload className="h-5 w-5 text-lime-2" />
             <span className={fileName ? "text-fg" : "text-fg-subtle"}>
               {fileName ?? "Datei auswählen oder hierher ziehen"}
             </span>

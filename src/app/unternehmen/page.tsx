@@ -1,87 +1,204 @@
 import type { Metadata } from "next";
-import { Search, ShieldCheck, Users, Clock } from "lucide-react";
-import { MeshBackground } from "@/components/mesh-background";
+import Image from "next/image";
+import { Phone, MessageCircle, Check } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import { Reveal } from "@/components/reveal";
+import {
+  Pill,
+  SectionHeading,
+  StatTiles,
+  IndustryGrid,
+  ProcessTimeline,
+  Promises,
+  ContactCTA,
+  SiteFooter,
+} from "@/components/marketing";
+import { FaqAccordion } from "@/components/faq";
+import { WHY_BALKAN, PROMISES, PROCESS, CONTACT } from "@/lib/content";
 import { CompanyForm } from "./company-form";
 
 export const metadata: Metadata = {
   title: "Für Unternehmen — WorkLink",
   description:
-    "Stellen Sie eine Personalanfrage und erhalten Sie qualifizierte Fachkräfte aus dem Westbalkan.",
+    "Stellen Sie eine Personalanfrage und erhalten Sie qualifizierte Fachkräfte aus dem Westbalkan. Vermittlung für Unternehmen komplett kostenlos.",
 };
 
-const benefits = [
-  {
-    icon: Search,
-    title: "Vorqualifiziert",
-    text: "Jeder Kandidat wird geprüft — Sprache, Abschlüsse, Berufserfahrung.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Rechtssicher",
-    text: "Visa, Anerkennung und Behördengänge begleiten wir vollständig.",
-  },
-  {
-    icon: Clock,
-    title: "Schnell",
-    text: "Erste passende Profile innerhalb von 24 Stunden nach Anfrage.",
-  },
-  {
-    icon: Users,
-    title: "Persönlich",
-    text: "Ein fester Ansprechpartner von der Anfrage bis zum ersten Arbeitstag.",
-  },
-];
+const heroPerks = ["Faire Konditionen", "Deutscher Support", "Komplett kostenfrei"];
 
 export default function UnternehmenPage() {
   return (
     <>
-      <MeshBackground />
       <SiteHeader />
 
-      <main className="mx-auto w-[min(64rem,calc(100%-2rem))] pb-24 pt-16">
-        <div className="max-w-2xl">
-          <p className="text-sm font-medium uppercase tracking-[0.14em] text-company">
-            Für Unternehmen
-          </p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-            Die richtigen Fachkräfte.
-            <br />
-            Ohne den Aufwand.
-          </h1>
-          <p className="mt-5 text-lg text-fg-muted">
-            Beschreiben Sie Ihren Bedarf — wir liefern geprüfte Kandidaten aus
-            dem Westbalkan und übernehmen den kompletten Vermittlungsprozess.
-          </p>
-        </div>
-
-        {/* Benefits */}
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {benefits.map((b) => (
-            <div
-              key={b.title}
-              className="glass rounded-2xl p-5"
-            >
-              <b.icon className="h-6 w-6 text-company" strokeWidth={1.7} />
-              <h3 className="mt-3 font-semibold">{b.title}</h3>
-              <p className="mt-1 text-sm text-fg-muted">{b.text}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Form */}
-        <section className="mt-16" id="anfrage">
-          <h2 className="text-2xl font-semibold tracking-tight">
-            Personalanfrage stellen
-          </h2>
-          <p className="mt-2 text-fg-muted">
-            Unverbindlich und kostenlos. Antwort innerhalb von 24 Stunden.
-          </p>
-          <div className="mt-6">
-            <CompanyForm />
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto grid w-[min(72rem,calc(100%-2rem))] items-center gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
+          <div>
+            <Reveal>
+              <Pill>Für Unternehmen</Pill>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+                Die richtigen Fachkräfte.
+                <br />
+                <span className="text-ink">Ohne den Aufwand.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-6 max-w-lg text-lg text-fg-muted">
+                Wir verbinden deutsche Unternehmen mit Personal aus dem
+                Westbalkan – Kosovo, Albanien und Nordmazedonien. Direkt, sauber
+                und ohne Zwischenhändler-Kette.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#anfrage" className="btn btn-lime">
+                  Zur Anfrage
+                </a>
+                <a href={CONTACT.phoneHref} className="btn btn-outline">
+                  <Phone className="h-4 w-4" /> {CONTACT.phone}
+                </a>
+              </div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-fg-muted">
+                {heroPerks.map((p) => (
+                  <li key={p} className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-lime-2" strokeWidth={2.5} /> {p}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
-        </section>
-      </main>
+
+          <Reveal delay={0.15}>
+            <div className="surface-ink dot-texture relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-card)] p-8">
+              <Image
+                src="/germany-map.svg"
+                alt="Deutschland"
+                width={340}
+                height={340}
+                className="relative opacity-90"
+              />
+              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-ink-2 p-5">
+                <p className="text-3xl font-semibold text-lime-2">24h</p>
+                <p className="mt-1 text-sm on-ink-muted">
+                  bis zur Rückmeldung mit konkreten Kandidatenprofilen
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Branchen */}
+      <section id="branchen" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16">
+        <SectionHeading
+          pill="Branchen"
+          title="Für diese Branchen vermitteln wir"
+          intro="Vom Pflegeheim bis zum Fulfillment-Zentrum: Wir finden passende Kräfte für die Branchen, in denen Deutschland am dringendsten Personal sucht."
+        />
+        <div className="mt-10">
+          <IndustryGrid lang="de" />
+        </div>
+      </section>
+
+      {/* Warum Westbalkan (dark) */}
+      <section className="surface-ink dot-texture">
+        <div className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16 lg:py-24">
+          <SectionHeading
+            pill="Fachkräfte aus dem Westbalkan"
+            title="Warum Personal aus der Region?"
+            intro="Wir machen diese Verbindung für Sie nutzbar – jung, motiviert und mit starker Arbeitsmoral."
+          />
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {WHY_BALKAN.map((w, i) => (
+              <Reveal key={w.title} delay={(i % 2) * 0.08}>
+                <div className="rounded-[var(--radius-card)] border border-white/10 bg-ink-2 p-7">
+                  <h3 className="text-xl font-semibold text-lime-2">{w.title}</h3>
+                  <p className="mt-3 on-ink-muted">{w.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-14">
+            <StatTiles />
+          </div>
+        </div>
+      </section>
+
+      {/* Ablauf */}
+      <section id="ablauf" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16 lg:py-24">
+        <SectionHeading
+          pill="Ablauf"
+          title="In 5 Schritten zum Ziel"
+          intro="Von der ersten Anfrage bis zur Ankunft in Deutschland – inklusive Westbalkanregelung und Vorabzustimmung bei der Bundesagentur für Arbeit."
+        />
+        <div className="mt-10">
+          <ProcessTimeline steps={PROCESS} />
+        </div>
+      </section>
+
+      {/* Versprechen */}
+      <section id="vorteile" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-8 pb-16">
+        <SectionHeading
+          pill="Ihre Vorteile"
+          title="Drei Dinge, auf die Sie sich verlassen können"
+        />
+        <div className="mt-10">
+          <Promises items={PROMISES} />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16">
+        <SectionHeading
+          pill="FAQ"
+          title="Das fragen Unternehmen am häufigsten"
+          intro="Alles Wichtige zur Einstellung von Personal aus dem Westbalkan – von der Westbalkanregelung bis zur Ankunft in Deutschland."
+        />
+        <div className="mt-10">
+          <FaqAccordion />
+        </div>
+      </section>
+
+      {/* Formular */}
+      <section id="anfrage" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-8 pb-20">
+        <SectionHeading
+          pill="Personalanfrage"
+          title="Stellen Sie Ihre Anfrage"
+          intro="Unverbindlich und kostenlos. Antwort innerhalb von 24 Stunden."
+        />
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
+          <div className="surface-ink dot-texture rounded-[var(--radius-card)] p-8">
+            <h3 className="text-2xl font-semibold">Lieber direkt sprechen?</h3>
+            <p className="mt-3 on-ink-muted">
+              Ein Anruf reicht. Wir melden uns innerhalb von 24 Stunden mit
+              konkreten nächsten Schritten zurück.
+            </p>
+            <div className="mt-6 flex flex-col gap-3">
+              <a href={CONTACT.phoneHref} className="btn btn-lime w-full">
+                <Phone className="h-4 w-4" /> {CONTACT.phone}
+              </a>
+              <a href={CONTACT.whatsapp} className="btn btn-outline w-full border-white/15 text-white">
+                <MessageCircle className="h-4 w-4" /> WhatsApp
+              </a>
+            </div>
+          </div>
+          <CompanyForm />
+        </div>
+      </section>
+
+      {/* Kontakt */}
+      <section className="mx-auto w-[min(72rem,calc(100%-2rem))] pb-20">
+        <ContactCTA
+          title="Kontaktieren Sie uns!"
+          intro="Ein Anruf reicht. Wir melden uns innerhalb von 24 Stunden mit konkreten nächsten Schritten zurück."
+        />
+      </section>
+
+      <SiteFooter />
     </>
   );
 }
