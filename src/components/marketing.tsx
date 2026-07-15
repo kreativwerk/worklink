@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, MessageCircle, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { MessageCircle, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { Logo } from "@/components/logo";
 import { CONTACT, INDUSTRIES, STATS } from "@/lib/content";
@@ -148,9 +148,8 @@ export function ContactCTA({
   intro: string;
 }) {
   const items = [
-    { icon: Phone, label: "Telefon", value: CONTACT.phone, href: CONTACT.phoneHref },
-    { icon: Mail, label: "E-Mail", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
     { icon: MessageCircle, label: "WhatsApp", value: "Kontakt per Klick", href: CONTACT.whatsapp },
+    { icon: Mail, label: "E-Mail", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
   ];
   return (
     <div className="surface-soft relative overflow-hidden rounded-[var(--radius-card)] border border-border p-8 sm:p-12">
@@ -161,7 +160,7 @@ export function ContactCTA({
         </h2>
         <p className="mt-4 text-lg text-fg-muted">{intro}</p>
       </div>
-      <div className="relative mt-8 grid gap-3 sm:grid-cols-3">
+      <div className="relative mt-8 grid gap-3 sm:grid-cols-2">
         {items.map((it) => (
           <a
             key={it.label}
@@ -189,7 +188,7 @@ export function SiteFooter() {
       <div className="mx-auto flex w-[min(72rem,calc(100%-2rem))] flex-col items-center justify-between gap-4 text-sm text-fg-muted sm:flex-row">
         <Logo className="text-[15px]" />
         <p className="flex items-center gap-1.5">
-          <MapPin className="h-4 w-4" /> {CONTACT.office} · {CONTACT.phone}
+          <MapPin className="h-4 w-4" /> {CONTACT.office} · {CONTACT.email}
         </p>
         <div className="flex gap-5">
           <Link href="/impressum" className="hover:text-fg">Impressum</Link>

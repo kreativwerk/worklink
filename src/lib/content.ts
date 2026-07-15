@@ -4,9 +4,8 @@
  */
 
 export const CONTACT = {
-  phone: "+383 48 119 114",
-  phoneHref: "tel:+38348119114",
   email: "info@kosovo-personal.com",
+  // TODO: durch den WhatsApp-Business-Link ersetzen, sobald er vorliegt.
   whatsapp: "https://wa.me/38348119114",
   office: "Prishtinë, Kosovo",
 };

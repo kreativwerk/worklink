@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, MessageCircle } from "lucide-react";
 import type { ApplicationStatus } from "@prisma/client";
 import { db } from "@/lib/db";
 import { STATUS_ORDER, STATUS_LABEL, DOC_LABEL } from "@/lib/status";
+import { whatsappLink } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -68,9 +69,21 @@ export default async function ApplicationDetail({
       </Link>
 
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          {a.firstName} {a.lastName}
-        </h1>
+        <div className="flex flex-wrap items-center gap-3">
+          <h1 className="text-3xl font-semibold tracking-tight">
+            {a.firstName} {a.lastName}
+          </h1>
+          {whatsappLink(a.phone) && (
+            <a
+              href={whatsappLink(a.phone, `Përshëndetje ${a.firstName}! WorkLink këtu.`)!}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-lime px-4 py-2 text-sm"
+            >
+              <MessageCircle className="h-4 w-4" /> Per WhatsApp antworten
+            </a>
+          )}
+        </div>
 
         {/* status changer */}
         <form action={updateStatus} className="flex items-center gap-2">

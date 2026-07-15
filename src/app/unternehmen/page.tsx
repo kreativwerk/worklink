@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Phone, MessageCircle, Check } from "lucide-react";
+import { MessageCircle, Check } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal } from "@/components/reveal";
 import {
@@ -56,8 +56,8 @@ export default function UnternehmenPage() {
                 <a href="#anfrage" className="btn btn-lime">
                   Zur Anfrage
                 </a>
-                <a href={CONTACT.phoneHref} className="btn btn-outline">
-                  <Phone className="h-4 w-4" /> {CONTACT.phone}
+                <a href={CONTACT.whatsapp} className="btn btn-outline">
+                  <MessageCircle className="h-4 w-4" /> WhatsApp
                 </a>
               </div>
             </Reveal>
@@ -172,17 +172,17 @@ export default function UnternehmenPage() {
         />
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
           <div className="surface-soft rounded-[var(--radius-card)] border border-border p-8">
-            <h3 className="text-2xl font-semibold">Lieber direkt sprechen?</h3>
+            <h3 className="text-2xl font-semibold">Lieber direkt schreiben?</h3>
             <p className="mt-3 text-fg-muted">
-              Ein Anruf reicht. Wir melden uns innerhalb von 24 Stunden mit
+              Eine Nachricht reicht. Wir melden uns innerhalb von 24 Stunden mit
               konkreten nächsten Schritten zurück.
             </p>
             <div className="mt-6 flex flex-col gap-3">
-              <a href={CONTACT.phoneHref} className="btn btn-lime w-full">
-                <Phone className="h-4 w-4" /> {CONTACT.phone}
+              <a href={CONTACT.whatsapp} className="btn btn-lime w-full">
+                <MessageCircle className="h-4 w-4" /> WhatsApp öffnen
               </a>
-              <a href={CONTACT.whatsapp} className="btn btn-outline w-full">
-                <MessageCircle className="h-4 w-4" /> WhatsApp
+              <a href={`mailto:${CONTACT.email}`} className="btn btn-outline w-full">
+                {CONTACT.email}
               </a>
             </div>
           </div>

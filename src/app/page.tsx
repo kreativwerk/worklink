@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowUpRight, Building2, UserRound, Phone, Clock } from "lucide-react";
+import { ArrowUpRight, Building2, UserRound, MessageCircle, Clock } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { MediaFrame } from "@/components/media-frame";
 import { CONTACT } from "@/lib/content";
@@ -45,9 +45,9 @@ export default function Home() {
         className="relative z-10 mx-auto flex w-[min(80rem,calc(100%-2.5rem))] items-center justify-between py-6"
       >
         <Logo className="text-lg" />
-        <a href={CONTACT.phoneHref} className="btn btn-lime px-4 py-2 text-sm">
-          <Phone className="h-4 w-4" />
-          <span className="hidden sm:inline">Anrufen</span>
+        <a href={CONTACT.whatsapp} className="btn btn-lime px-4 py-2 text-sm">
+          <MessageCircle className="h-4 w-4" />
+          <span className="hidden sm:inline">WhatsApp</span>
         </a>
       </motion.header>
 

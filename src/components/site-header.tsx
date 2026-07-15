@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Phone } from "lucide-react";
+import { ArrowLeft, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { CONTACT } from "@/lib/content";
 
@@ -18,9 +18,9 @@ export function SiteHeader() {
         <Link href="/">
           <Logo className="text-[15px]" />
         </Link>
-        <a href={CONTACT.phoneHref} className="btn btn-lime px-4 py-2 text-sm">
-          <Phone className="h-4 w-4" />
-          <span className="hidden sm:inline">Anrufen</span>
+        <a href={CONTACT.whatsapp} className="btn btn-lime px-4 py-2 text-sm">
+          <MessageCircle className="h-4 w-4" />
+          <span className="hidden sm:inline">WhatsApp</span>
         </a>
       </div>
     </header>

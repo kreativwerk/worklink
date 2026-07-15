@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { Users, Building2, FileText } from "lucide-react";
+import { Users, Building2, FileText, MessageCircle } from "lucide-react";
 import { db } from "@/lib/db";
 import { STATUS_LABEL } from "@/lib/status";
 import { Logo } from "@/components/logo";
+import { whatsappLink } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -73,7 +74,22 @@ export default async function AdminPage() {
                       </Link>
                     </Td>
                     <Td>{a.field ?? "—"}</Td>
-                    <Td className="text-fg-muted">{a.email}</Td>
+                    <Td className="text-fg-muted">
+                      <span className="flex items-center gap-2">
+                        {a.email}
+                        {whatsappLink(a.phone) && (
+                          <a
+                            href={whatsappLink(a.phone)!}
+                            target="_blank"
+                            rel="noreferrer"
+                            title="Per WhatsApp schreiben"
+                            className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-lime text-on-lime"
+                          >
+                            <MessageCircle className="h-3.5 w-3.5" />
+                          </a>
+                        )}
+                      </span>
+                    </Td>
                     <Td>{a._count.documents}</Td>
                     <Td>
                       <span className="inline-flex rounded-full border border-border bg-bg px-2.5 py-0.5 text-xs font-medium">

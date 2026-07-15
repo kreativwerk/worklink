@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "WorkLink — Fachkräfte aus dem Westbalkan",
   description:
     "WorkLink verbindet deutsche Unternehmen mit qualifizierten Fachkräften aus dem Westbalkan. Unternehmen stellen Personalanfragen, Bewerber bewerben sich in Minuten.",
-  metadataBase: new URL("https://worklink.example"),
+  metadataBase: new URL("https://worklink-recruiting.com"),
   openGraph: {
     title: "WorkLink — Fachkräfte aus dem Westbalkan",
     description:
