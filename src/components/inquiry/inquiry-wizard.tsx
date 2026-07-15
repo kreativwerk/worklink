@@ -25,11 +25,22 @@ type Field = {
 
 type Step =
   | { kind: "single"; key: string; question: string; hint?: string; options: string[]; grid?: boolean }
+  | { kind: "pay-amount" }
+  | { kind: "multi"; key: string; question: string; hint?: string; options: string[]; exclusive?: string }
   | { kind: "accommodation-details" }
   | { kind: "fields"; section: string; fields: Field[] }
   | { kind: "message" };
 
 const NIVEAUS = ["Keine", "Grundkenntnisse (A1–A2)", "Gut (B1–B2)", "Sehr gut (C1+)"];
+
+const PAY_EXTRAS = [
+  "Spesen / Verpflegungsmehraufwand",
+  "Schicht- & Nachtzuschläge",
+  "Überstunden werden bezahlt",
+  "Urlaubs- / Weihnachtsgeld",
+  "Bonus / Prämien",
+  "Keine zusätzlichen Zahlungen",
+];
 
 function buildSteps(hasAccommodation: boolean): Step[] {
   return [
@@ -52,6 +63,27 @@ function buildSteps(hasAccommodation: boolean): Step[] {
       question: "Wann sollen die Mitarbeiter starten?",
       hint: "Realistisch: Das Visumverfahren braucht mehrere Monate Vorlauf.",
       options: ["So bald wie möglich", "In 3–6 Monaten", "In 6–12 Monaten", "Flexibel"],
+    },
+    {
+      kind: "single",
+      key: "payType",
+      question: "Wie bezahlen Sie Ihre Mitarbeiter?",
+      options: ["Stundenlohn", "Festgehalt (monatlich)"],
+    },
+    { kind: "pay-amount" },
+    {
+      kind: "multi",
+      key: "payExtras",
+      question: "Gibt es zusätzliche Zahlungen?",
+      hint: "Mehrfachauswahl möglich",
+      options: PAY_EXTRAS,
+      exclusive: "Keine zusätzlichen Zahlungen",
+    },
+    {
+      kind: "single",
+      key: "vacationDays",
+      question: "Wie viele Urlaubstage bieten Sie?",
+      options: ["20 Tage (gesetzlich)", "21–25 Tage", "26–30 Tage", "Über 30 Tage"],
     },
     {
       kind: "single",
@@ -120,6 +152,7 @@ export function InquiryWizard() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
   const [data, setData] = useState<Record<string, string>>({});
+  const [extras, setExtras] = useState<string[]>([]);
   const [photos, setPhotos] = useState<File[]>([]);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
 
@@ -158,6 +191,7 @@ export function InquiryWizard() {
     try {
       const fd = new FormData();
       Object.entries(data).forEach(([k, v]) => fd.set(k, v));
+      fd.set("payExtras", extras.join(", "));
       photos.forEach((f) => fd.append("photos", f));
       const res = await fetch("/api/anfrage", { method: "POST", body: fd });
       if (!res.ok) throw new Error();
@@ -263,6 +297,85 @@ export function InquiryWizard() {
               </div>
             )}
 
+            {step.kind === "pay-amount" && (
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                  {data.payType === "Stundenlohn"
+                    ? "Wie hoch ist der Stundenlohn?"
+                    : "Wie hoch ist das Monatsgehalt?"}
+                </h2>
+                <p className="mt-2 text-sm text-fg-subtle">
+                  Brutto — eine Spanne ist auch in Ordnung.
+                </p>
+                <div className="mt-8 flex flex-col gap-1.5">
+                  <label htmlFor="payAmount" className="text-sm font-medium">
+                    {data.payType === "Stundenlohn"
+                      ? "Stundenlohn (brutto)"
+                      : "Monatsgehalt (brutto)"}
+                    <span className="ml-0.5 text-lime-2">*</span>
+                  </label>
+                  <input
+                    id="payAmount"
+                    type="text"
+                    inputMode="decimal"
+                    placeholder={
+                      data.payType === "Stundenlohn"
+                        ? "z. B. 15–17 €/Stunde"
+                        : "z. B. 2.800 €/Monat"
+                    }
+                    value={data.payAmount ?? ""}
+                    onChange={(e) =>
+                      setData((d) => ({ ...d, payAmount: e.target.value }))
+                    }
+                    className="w-full rounded-xl border border-border bg-bg-elevated px-4 py-2.5 text-[15px] outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
+                  />
+                </div>
+              </div>
+            )}
+
+            {step.kind === "multi" && (
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                  {step.question}
+                </h2>
+                <p className="mt-2 text-sm text-fg-subtle">{step.hint}</p>
+                <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {step.options.map((o) => {
+                    const active = extras.includes(o);
+                    return (
+                      <button
+                        key={o}
+                        onClick={() =>
+                          setExtras((prev) => {
+                            if (prev.includes(o)) return prev.filter((x) => x !== o);
+                            // "Keine" schließt alle anderen aus — und umgekehrt
+                            if (o === step.exclusive) return [o];
+                            return [...prev.filter((x) => x !== step.exclusive), o];
+                          })
+                        }
+                        className={cn(
+                          "flex items-center justify-between gap-3 rounded-2xl border p-4 text-left text-[15px] font-medium transition-all",
+                          active
+                            ? "border-lime-2 bg-lime/10"
+                            : "border-border bg-bg-elevated hover:border-lime-2",
+                        )}
+                      >
+                        {o}
+                        <span
+                          className={cn(
+                            "grid h-6 w-6 shrink-0 place-items-center rounded-md border transition-colors",
+                            active ? "border-lime-2 bg-lime text-on-lime" : "border-border",
+                          )}
+                        >
+                          {active && <Check className="h-3.5 w-3.5" />}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
             {step.kind === "accommodation-details" && (
               <div>
                 <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -352,6 +465,10 @@ export function InquiryWizard() {
                     ["Branche", data.industry],
                     ["Anzahl Mitarbeiter", data.headcount],
                     ["Start", data.startDate],
+                    ["Bezahlung", data.payType],
+                    ["Betrag", data.payAmount],
+                    ["Zusätzlich", extras.join(", ")],
+                    ["Urlaubstage", data.vacationDays],
                     ["Führerschein", data.driverLicense],
                     ["Deutsch", data.germanLevel],
                     ["Englisch", data.englishLevel],
@@ -405,6 +522,18 @@ export function InquiryWizard() {
             </button>
           ) : step.kind === "accommodation-details" ? (
             <button onClick={advance} className="btn btn-lime">
+              Weiter <ArrowRight className="h-4 w-4" />
+            </button>
+          ) : step.kind === "pay-amount" ? (
+            <button
+              onClick={advance}
+              disabled={!(data.payAmount ?? "").trim()}
+              className="btn btn-lime"
+            >
+              Weiter <ArrowRight className="h-4 w-4" />
+            </button>
+          ) : step.kind === "multi" ? (
+            <button onClick={advance} disabled={extras.length === 0} className="btn btn-lime">
               Weiter <ArrowRight className="h-4 w-4" />
             </button>
           ) : (

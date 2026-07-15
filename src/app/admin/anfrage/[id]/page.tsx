@@ -36,6 +36,12 @@ export default async function InquiryDetail({
     ["Deutsch", q.germanLevel],
     ["Englisch", q.englishLevel],
   ];
+  const bezahlung: Row[] = [
+    ["Lohnart", q.payType],
+    ["Betrag", q.payAmount],
+    ["Zusätzliche Zahlungen", q.payExtras],
+    ["Urlaubstage", q.vacationDays],
+  ];
   const unterkunft: Row[] = [
     ["Unterkunft vorhanden", q.accommodation],
     ["Zimmertyp", q.roomType],
@@ -72,6 +78,7 @@ export default async function InquiryDetail({
       <div className="grid gap-5 sm:grid-cols-2">
         <Section title="Unternehmen" rows={firma} />
         <Section title="Bedarf" rows={bedarf} />
+        <Section title="Bezahlung & Konditionen" rows={bezahlung} />
         <Section title="Anforderungen" rows={anforderungen} />
         <Section title="Unterkunft" rows={unterkunft} />
       </div>

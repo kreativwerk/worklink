@@ -98,6 +98,12 @@ model CompanyInquiry {
   germanLevel   String? // Keine / A1–A2 / B1–B2 / C1+
   englishLevel  String? // Keine / A1–A2 / B1–B2 / C1+
 
+  // Bezahlung & Konditionen
+  payType      String? // Stundenlohn / Festgehalt
+  payAmount    String? // z. B. "16 €/Stunde" oder "2.800 €/Monat brutto"
+  payExtras    String? // z. B. "Spesen, Bonus / Prämien" (kommagetrennt)
+  vacationDays String? // z. B. "26–30 Tage"
+
   // Unterkunft — zentral für Westbalkan-Vermittlung
   accommodation  String? // Ja / Nein
   roomType       String? // Einzelzimmer / 2-Bett-Zimmer / Beides
