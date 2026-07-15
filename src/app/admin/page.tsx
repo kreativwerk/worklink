@@ -124,13 +124,21 @@ export default async function AdminPage() {
                   <Th>Ansprechpartner</Th>
                   <Th>Branche</Th>
                   <Th>Bedarf</Th>
+                  <Th>Unterkunft</Th>
                   <Th>Eingegangen</Th>
                 </tr>
               </thead>
               <tbody>
                 {inquiries.map((q) => (
                   <tr key={q.id} className="border-b border-border last:border-0 hover:bg-bg">
-                    <Td className="font-medium">{q.company}</Td>
+                    <Td>
+                      <Link
+                        href={`/admin/anfrage/${q.id}`}
+                        className="font-medium text-fg hover:text-lime-2"
+                      >
+                        {q.company}
+                      </Link>
+                    </Td>
                     <Td className="text-fg-muted">
                       {q.contact}
                       <br />
@@ -138,12 +146,13 @@ export default async function AdminPage() {
                     </Td>
                     <Td>{q.industry}</Td>
                     <Td>{q.headcount ?? "—"}</Td>
+                    <Td>{q.accommodation ?? "—"}</Td>
                     <Td className="whitespace-nowrap text-fg-muted">{fmt(q.createdAt)}</Td>
                   </tr>
                 ))}
                 {inquiries.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="px-4 py-8 text-center text-fg-subtle">
+                    <td colSpan={6} className="px-4 py-8 text-center text-fg-subtle">
                       Noch keine Anfragen.
                     </td>
                   </tr>

@@ -13,8 +13,9 @@ import {
   SiteFooter,
 } from "@/components/marketing";
 import { FaqAccordion } from "@/components/faq";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { WHY_POINTS, PROMISES, PROCESS, CONTACT } from "@/lib/content";
-import { CompanyForm } from "./company-form";
 
 export const metadata: Metadata = {
   title: "Für Unternehmen — WorkLink",
@@ -52,9 +53,9 @@ export default function UnternehmenPage() {
             </Reveal>
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#anfrage" className="btn btn-lime">
-                  Zur Anfrage
-                </a>
+                <Link href="/anfrage" className="btn btn-lime">
+                  Zur Anfrage <ArrowRight className="h-4 w-4" />
+                </Link>
                 {CONTACT.whatsapp && (
                   <a href={CONTACT.whatsapp} className="btn btn-outline">
                     <MessageCircle className="h-4 w-4" /> WhatsApp
@@ -176,35 +177,19 @@ export default function UnternehmenPage() {
         </div>
       </section>
 
-      {/* Formular */}
+      {/* CTA → Anfrage-Wizard */}
       <section id="anfrage" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-8 pb-20">
-        <SectionHeading
-          pill="Personalanfrage"
-          title="Stellen Sie Ihre Anfrage"
-          intro="Unverbindlich und kostenlos. Antwort innerhalb von 24 Stunden."
-        />
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
-          <div className="surface-soft rounded-[var(--radius-card)] border border-border p-8">
-            <h3 className="text-2xl font-semibold">Lieber direkt schreiben?</h3>
-            <p className="mt-3 text-fg-muted">
-              Eine Nachricht reicht. Wir melden uns innerhalb von 24 Stunden mit
-              konkreten nächsten Schritten zurück.
-            </p>
-            <div className="mt-6 flex flex-col gap-3">
-              {CONTACT.whatsapp && (
-                <a href={CONTACT.whatsapp} className="btn btn-lime w-full">
-                  <MessageCircle className="h-4 w-4" /> WhatsApp öffnen
-                </a>
-              )}
-              <a
-                href={`mailto:${CONTACT.email}`}
-                className={CONTACT.whatsapp ? "btn btn-outline w-full" : "btn btn-lime w-full"}
-              >
-                {CONTACT.email}
-              </a>
-            </div>
-          </div>
-          <CompanyForm />
+        <div className="surface-lime relative overflow-hidden rounded-[var(--radius-card)] p-8 text-center sm:p-14">
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            Personalanfrage stellen
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-fg-muted">
+            In 2 Minuten ausgefüllt: Branche, Bedarf, Anforderungen und
+            Unterkunft — wir melden uns innerhalb von 24 Stunden.
+          </p>
+          <Link href="/anfrage" className="btn btn-ink mx-auto mt-8">
+            Anfrage starten <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 

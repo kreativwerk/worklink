@@ -1,15 +1,25 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { saveUpload } from "@/lib/storage";
 
-/** POST /api/anfrage — Personalanfrage eines Unternehmens (→ PostgreSQL). */
+const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB
+const ALLOWED = ["application/pdf", "image/jpeg", "image/png", "image/webp"];
+
+/**
+ * POST /api/anfrage — Personalanfrage eines Unternehmens (multipart).
+ * Speichert Bedarf, Anforderungen und Unterkunfts-Angaben in PostgreSQL;
+ * Unterkunfts-Fotos landen im Upload-Verzeichnis auf dem VPS.
+ */
 export async function POST(req: Request) {
-  const body = await req.json().catch(() => null);
-  if (!body) {
+  const form = await req.formData().catch(() => null);
+  if (!form) {
     return NextResponse.json({ error: "Ungültige Daten" }, { status: 400 });
   }
 
-  const required = ["company", "contact", "email", "industry", "message"];
-  const missing = required.filter((k) => !String(body[k] ?? "").trim());
+  const get = (k: string) => String(form.get(k) ?? "").trim();
+
+  const required = ["company", "contact", "email", "industry", "city"];
+  const missing = required.filter((k) => !get(k));
   if (missing.length) {
     return NextResponse.json(
       { error: "Pflichtfelder fehlen", fields: missing },
@@ -17,22 +27,56 @@ export async function POST(req: Request) {
     );
   }
 
-  try {
-    await db.companyInquiry.create({
-      data: {
-        company: String(body.company),
-        contact: String(body.contact),
-        email: String(body.email),
-        phone: body.phone ? String(body.phone) : null,
-        industry: String(body.industry),
-        headcount: Number(body.headcount) || null,
-        message: String(body.message),
-      },
-    });
-  } catch (err) {
-    console.error("[anfrage] DB error", err);
-    return NextResponse.json({ error: "Serverfehler" }, { status: 500 });
+  // Unterkunfts-Fotos validieren
+  const photoFiles: File[] = [];
+  for (const f of form.getAll("photos")) {
+    if (f instanceof File && f.size > 0) {
+      if (!ALLOWED.includes(f.type)) {
+        return NextResponse.json(
+          { error: "Dateityp nicht erlaubt (JPG, PNG, WebP, PDF)" },
+          { status: 415 },
+        );
+      }
+      if (f.size > MAX_FILE_BYTES) {
+        return NextResponse.json({ error: "Datei zu groß (max. 10 MB)" }, { status: 413 });
+      }
+      photoFiles.push(f);
+    }
   }
 
-  return NextResponse.json({ ok: true });
+  try {
+    const subdir = `anfragen/${new Date().toISOString().slice(0, 7)}`;
+    const photos = await Promise.all(
+      photoFiles.map(async (file) => await saveUpload(file, subdir)),
+    );
+
+    const created = await db.companyInquiry.create({
+      data: {
+        company: get("company"),
+        contact: get("contact"),
+        email: get("email"),
+        phone: get("phone") || null,
+        city: get("city") || null,
+        industry: get("industry"),
+        headcount: get("headcount") || null,
+        startDate: get("startDate") || null,
+        driverLicense: get("driverLicense") || null,
+        germanLevel: get("germanLevel") || null,
+        englishLevel: get("englishLevel") || null,
+        accommodation: get("accommodation") || null,
+        roomType: get("roomType") || null,
+        rentWarm: get("rentWarm") || null,
+        commuteMinutes: get("commuteMinutes") || null,
+        message: get("message") || null,
+        photos: { create: photos },
+      },
+      select: { id: true },
+    });
+
+    console.info("[anfrage] neue Personalanfrage", created.id, `(${photos.length} Fotos)`);
+    return NextResponse.json({ ok: true, id: created.id });
+  } catch (err) {
+    console.error("[anfrage] Fehler", err);
+    return NextResponse.json({ error: "Serverfehler" }, { status: 500 });
+  }
 }

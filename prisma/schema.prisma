@@ -79,18 +79,49 @@ model Document {
   @@index([applicationId])
 }
 
-/// Personalanfrage eines Unternehmens.
+/// Personalanfrage eines Unternehmens (mehrstufiger Wizard).
 model CompanyInquiry {
-  id        String   @id @default(cuid())
-  company   String
-  contact   String
-  email     String
-  phone     String?
+  id      String  @id @default(cuid())
+  company String
+  contact String
+  email   String
+  phone   String?
+  city    String? // Einsatzort (PLZ/Ort)
+
+  // Bedarf
   industry  String
-  headcount Int?
-  message   String
-  handled   Boolean  @default(false)
-  createdAt DateTime @default(now())
+  headcount String? // z. B. "2–5"
+  startDate String? // z. B. "So bald wie möglich"
+
+  // Anforderungen an die Mitarbeiter
+  driverLicense String? // Pflicht Pkw / Pflicht Lkw / Wünschenswert / Nicht erforderlich
+  germanLevel   String? // Keine / A1–A2 / B1–B2 / C1+
+  englishLevel  String? // Keine / A1–A2 / B1–B2 / C1+
+
+  // Unterkunft — zentral für Westbalkan-Vermittlung
+  accommodation  String? // Ja / Nein
+  roomType       String? // Einzelzimmer / 2-Bett-Zimmer / Beides
+  rentWarm       String? // Warmmiete €/Monat (optional, Freitext)
+  commuteMinutes String? // Weg zur Arbeit, z. B. "15–30 Min"
+
+  message   String?
+  handled   Boolean        @default(false)
+  photos    InquiryPhoto[]
+  createdAt DateTime       @default(now())
 
   @@index([createdAt])
+}
+
+/// Foto einer angebotenen Unterkunft (Datei auf dem VPS, Metadaten hier).
+model InquiryPhoto {
+  id         String         @id @default(cuid())
+  inquiry    CompanyInquiry @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  inquiryId  String
+  filename   String
+  storedName String
+  mime       String
+  size       Int
+  createdAt  DateTime       @default(now())
+
+  @@index([inquiryId])
 }
