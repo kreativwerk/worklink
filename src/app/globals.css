@@ -19,7 +19,7 @@
   --ink-2: #143a34;       /* elevated dark panel */
   --ink-3: #1c4a42;       /* hover / lines on dark */
   --lime: #c2f04a;        /* accent fill (with dark text) */
-  --lime-2: #a8dd1f;      /* accent for light-mode text/borders (readable) */
+  --lime-2: #4a7a00;      /* readable accent green for text/borders on LIGHT */
   --on-lime: #0e2b27;     /* text on lime */
 
   --radius: 26px;
@@ -85,8 +85,27 @@ body {
   --fg-subtle: #6b7d77;
   --border: rgba(255, 255, 255, 0.10);
   --bg-elevated: var(--ink-2);
+  --lime-2: #c2f04a; /* bright accent reads on dark petrol */
 }
 .surface-ink .on-ink-muted { color: #9fb0aa; }
+
+/* --- Bright lime accent surface (punchy CTA, NOT dark) ----------------- */
+.surface-lime {
+  background: var(--lime);
+  color: var(--on-lime);
+  --fg: var(--on-lime);
+  --fg-muted: color-mix(in oklab, var(--on-lime) 72%, transparent);
+  --fg-subtle: color-mix(in oklab, var(--on-lime) 55%, transparent);
+  --border: color-mix(in oklab, var(--on-lime) 16%, transparent);
+  --bg-elevated: color-mix(in oklab, var(--on-lime) 7%, transparent);
+  --lime-2: var(--on-lime); /* on lime bg, "accent" text becomes petrol */
+}
+.surface-lime .on-ink-muted { color: color-mix(in oklab, var(--on-lime) 72%, transparent); }
+
+/* --- Soft lime-tinted light panel ------------------------------------- */
+.surface-soft {
+  background: color-mix(in oklab, var(--lime) 9%, var(--bg-elevated));
+}
 
 /* Subtle dotted texture for dark sections */
 .dot-texture {

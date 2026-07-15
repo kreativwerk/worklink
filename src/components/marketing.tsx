@@ -153,26 +153,26 @@ export function ContactCTA({
     { icon: MessageCircle, label: "WhatsApp", value: "Kontakt per Klick", href: CONTACT.whatsapp },
   ];
   return (
-    <div className="surface-ink dot-texture relative overflow-hidden rounded-[var(--radius-card)] p-8 sm:p-12">
+    <div className="surface-soft relative overflow-hidden rounded-[var(--radius-card)] border border-border p-8 sm:p-12">
       <div className="relative max-w-xl">
         <Pill>Kontakt</Pill>
         <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
           {title}
         </h2>
-        <p className="mt-4 text-lg on-ink-muted">{intro}</p>
+        <p className="mt-4 text-lg text-fg-muted">{intro}</p>
       </div>
       <div className="relative mt-8 grid gap-3 sm:grid-cols-3">
         {items.map((it) => (
           <a
             key={it.label}
             href={it.href}
-            className="card flex items-center gap-3 p-4 transition-colors hover:bg-ink-3"
+            className="flex items-center gap-3 rounded-2xl border border-border bg-bg-elevated p-4 transition-colors hover:border-lime-2"
           >
             <span className="icon-badge h-10 w-10 shrink-0">
               <it.icon className="h-5 w-5" strokeWidth={2} />
             </span>
             <span className="min-w-0">
-              <span className="block text-xs on-ink-muted">{it.label}</span>
+              <span className="block text-xs text-fg-subtle">{it.label}</span>
               <span className="block truncate font-medium">{it.value}</span>
             </span>
           </a>

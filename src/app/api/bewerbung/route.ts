@@ -1,13 +1,35 @@
 import { NextResponse } from "next/server";
 
-const MAX_CV_BYTES = 10 * 1024 * 1024; // 10 MB
+const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB
 const ALLOWED = ["application/pdf", "image/jpeg", "image/png"];
 
+const DOC_SLOTS = ["idFront", "idBack", "selfie", "licenseFront", "licenseBack"];
+const REQUIRED_DOCS = ["idFront", "idBack", "selfie"];
+const REQUIRED_FIELDS = [
+  "firstName",
+  "lastName",
+  "dob",
+  "nationality",
+  "email",
+  "phone",
+  "field",
+];
+
+type FileMeta = { name: string; type: string; size: number };
+
+function checkFile(f: File) {
+  if (!ALLOWED.includes(f.type)) return "Dateityp nicht erlaubt (PDF, JPG, PNG)";
+  if (f.size > MAX_FILE_BYTES) return "Datei zu groß (max. 10 MB)";
+  return null;
+}
+
 /**
- * POST /api/bewerbung — Bewerbung eines Kandidaten (multipart, inkl. CV-Datei).
+ * POST /api/bewerbung — mehrstufige Bewerbung (multipart).
+ * Felder: Vorauswahl, Identität, Adresse, Kontakt/Größen, Einwilligung.
+ * Dateien: Ausweis/Selfie/Führerschein + mehrere Zeugnisse (certificates).
  *
- * TODO(persistenz + storage): CV in Objektspeicher ablegen (Supabase Storage /
- * Cloudflare R2 / S3), Metadaten in DB schreiben. Aktuell: validieren + loggen.
+ * TODO(persistenz + storage): Dateien in Objektspeicher (Supabase/R2/S3),
+ * Metadaten + Antworten in die DB. Aktuell: validieren + loggen.
  */
 export async function POST(req: Request) {
   const form = await req.formData().catch(() => null);
@@ -16,8 +38,8 @@ export async function POST(req: Request) {
   }
 
   const get = (k: string) => String(form.get(k) ?? "").trim();
-  const required = ["firstName", "lastName", "email", "phone", "field"];
-  const missing = required.filter((k) => !get(k));
+
+  const missing = REQUIRED_FIELDS.filter((k) => !get(k));
   if (missing.length) {
     return NextResponse.json(
       { error: "Pflichtfelder fehlen", fields: missing },
@@ -25,41 +47,81 @@ export async function POST(req: Request) {
     );
   }
 
-  const cv = form.get("cv");
-  let cvMeta: { name: string; type: string; size: number } | null = null;
-  if (cv instanceof File && cv.size > 0) {
-    if (!ALLOWED.includes(cv.type)) {
-      return NextResponse.json(
-        { error: "Dateityp nicht erlaubt (PDF, JPG, PNG)" },
-        { status: 415 },
-      );
+  if (get("dsgvoConsent") !== "Ja") {
+    return NextResponse.json(
+      { error: "DSGVO-Einwilligung erforderlich" },
+      { status: 422 },
+    );
+  }
+
+  // --- single-file documents ---
+  const documents: Record<string, FileMeta> = {};
+  for (const slot of DOC_SLOTS) {
+    const f = form.get(slot);
+    if (f instanceof File && f.size > 0) {
+      const err = checkFile(f);
+      if (err) return NextResponse.json({ error: `${slot}: ${err}` }, { status: 415 });
+      documents[slot] = { name: f.name, type: f.type, size: f.size };
+      // await storage.upload(`applications/${id}/${slot}`, Buffer.from(await f.arrayBuffer()))
     }
-    if (cv.size > MAX_CV_BYTES) {
-      return NextResponse.json(
-        { error: "Datei zu groß (max. 10 MB)" },
-        { status: 413 },
-      );
+  }
+  const missingDocs = REQUIRED_DOCS.filter((d) => !documents[d]);
+  if (missingDocs.length) {
+    return NextResponse.json(
+      { error: "Pflichtdokumente fehlen", documents: missingDocs },
+      { status: 422 },
+    );
+  }
+
+  // --- multiple certificates ---
+  const certificates: FileMeta[] = [];
+  for (const f of form.getAll("certificates")) {
+    if (f instanceof File && f.size > 0) {
+      const err = checkFile(f);
+      if (err) return NextResponse.json({ error: `certificate: ${err}` }, { status: 415 });
+      certificates.push({ name: f.name, type: f.type, size: f.size });
     }
-    cvMeta = { name: cv.name, type: cv.type, size: cv.size };
-    // const bytes = Buffer.from(await cv.arrayBuffer())
-    // const { url } = await storage.upload(`cv/${crypto.randomUUID()}`, bytes)
   }
 
   const application = {
     type: "candidate_application" as const,
+    lang: get("lang"),
+    // Vorauswahl
+    employment: get("employment"),
+    truckLicense: get("truckLicense"),
+    field: get("field"),
+    amazonPartnerExperience: get("amazon"),
+    // Identität
     firstName: get("firstName"),
     lastName: get("lastName"),
+    dob: get("dob"),
+    placeOfBirth: get("placeOfBirth") || null,
+    nationality: get("nationality"),
+    countryOfBirth: get("countryOfBirth") || null,
+    // Adresse
+    street: get("street"),
+    postal: get("postal") || null,
+    city: get("city"),
+    livingSince: get("livingSince") || null,
+    // Kontakt & Größen
     email: get("email"),
     phone: get("phone"),
-    field: get("field"),
-    german: get("german") || null,
-    about: get("about") || null,
-    cv: cvMeta,
+    tshirtSize: get("tshirt") || null,
+    shoeSize: get("shoe") || null,
+    // Dokumente
+    documents,
+    certificates,
+    // DSGVO
+    dsgvoConsent: get("dsgvoConsent"),
+    dsgvoConsentAt: get("dsgvoConsentAt"),
     receivedAt: new Date().toISOString(),
   };
 
   // await db.application.create({ data: application })
-  console.info("[bewerbung] neue Bewerbung", application);
+  console.info("[bewerbung] neue Bewerbung", {
+    ...application,
+    certificates: certificates.length,
+  });
 
   return NextResponse.json({ ok: true });
 }

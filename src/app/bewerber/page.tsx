@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Phone, MessageCircle, Check } from "lucide-react";
+import Link from "next/link";
+import { MessageCircle, Check, ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal } from "@/components/reveal";
 import {
@@ -12,7 +13,6 @@ import {
   SiteFooter,
 } from "@/components/marketing";
 import { PROMISES_SQ, CONTACT } from "@/lib/content";
-import { ApplicantForm } from "./applicant-form";
 
 export const metadata: Metadata = {
   title: "Für Bewerber — WorkLink · Aplikacion",
@@ -58,9 +58,9 @@ export default function BewerberPage() {
             </Reveal>
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#bewerbung" className="btn btn-lime">
-                  Apliko tani
-                </a>
+                <Link href="/bewerben" className="btn btn-lime">
+                  Apliko tani <ArrowRight className="h-4 w-4" />
+                </Link>
                 <a href={CONTACT.whatsapp} className="btn btn-outline">
                   <MessageCircle className="h-4 w-4" /> WhatsApp
                 </a>
@@ -78,7 +78,7 @@ export default function BewerberPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="surface-ink dot-texture relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-card)] p-8">
+            <div className="surface-soft relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-card)] border border-border p-8">
               <Image
                 src="/kosovo-map.svg"
                 alt="Kosovo"
@@ -86,9 +86,9 @@ export default function BewerberPage() {
                 height={260}
                 className="relative opacity-90"
               />
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-ink-2 p-5">
+              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-border bg-bg-elevated p-5">
                 <p className="text-3xl font-semibold text-lime-2">Falas</p>
-                <p className="mt-1 text-sm on-ink-muted">
+                <p className="mt-1 text-sm text-fg-muted">
                   Aplikimi është plotësisht falas për kandidatët
                 </p>
               </div>
@@ -109,8 +109,8 @@ export default function BewerberPage() {
         </div>
       </section>
 
-      {/* Ablauf SQ (dark) */}
-      <section className="surface-ink dot-texture">
+      {/* Ablauf SQ */}
+      <section className="surface-soft border-y border-border">
         <div className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16 lg:py-24">
           <SectionHeading
             pill="Rrugëtimi · Ablauf"
@@ -134,15 +134,19 @@ export default function BewerberPage() {
         </div>
       </section>
 
-      {/* Formular */}
-      <section id="bewerbung" className="mx-auto w-[min(72rem,calc(100%-2rem))] py-8 pb-24">
-        <SectionHeading
-          pill="Aplikacion"
-          title="Apliko tani"
-          intro="Kostenlos und unverbindlich. Aplikimi është falas."
-        />
-        <div className="mt-8">
-          <ApplicantForm />
+      {/* CTA → Wizard */}
+      <section className="mx-auto w-[min(72rem,calc(100%-2rem))] py-8 pb-24">
+        <div className="surface-lime relative overflow-hidden rounded-[var(--radius-card)] p-8 text-center sm:p-14">
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            Apliko tani · Jetzt bewerben
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-fg-muted">
+            Në Shqip, Bosanski ose Hrvatski. Falas dhe pa detyrime — Formular auf
+            Albanisch, Bosnisch oder Kroatisch.
+          </p>
+          <Link href="/bewerben" className="btn btn-ink mx-auto mt-8">
+            Fillo aplikimin <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 

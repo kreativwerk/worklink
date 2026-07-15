@@ -35,7 +35,7 @@ const fade = {
 
 export default function Home() {
   return (
-    <main className="surface-ink relative flex min-h-dvh flex-col overflow-hidden">
+    <main className="relative flex min-h-dvh flex-col overflow-hidden">
       {/* top bar */}
       <motion.header
         custom={0}
@@ -51,10 +51,15 @@ export default function Home() {
         </a>
       </motion.header>
 
-      {/* ambient glow */}
+      {/* soft ambient tints */}
       <div
-        className="pointer-events-none absolute right-[-10%] top-[-10%] h-[40rem] w-[40rem] rounded-full opacity-20 blur-[130px]"
+        className="pointer-events-none absolute right-[-8%] top-[-6%] h-[34rem] w-[34rem] rounded-full opacity-[0.18] blur-[130px]"
         style={{ background: "var(--lime)" }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute left-[-10%] bottom-[-10%] h-[30rem] w-[30rem] rounded-full opacity-[0.10] blur-[130px]"
+        style={{ background: "var(--ink)" }}
         aria-hidden
       />
 
@@ -84,7 +89,7 @@ export default function Home() {
             variants={fade}
             initial="hidden"
             animate="show"
-            className="mt-6 max-w-md text-lg on-ink-muted"
+            className="mt-6 max-w-md text-lg text-fg-muted"
           >
             Wir bringen deutsche Unternehmen und Fachkräfte aus Kosovo, Albanien
             und Nordmazedonien zusammen. Sagen Sie uns, wer Sie sind.
@@ -111,15 +116,15 @@ export default function Home() {
           <MediaFrame aspect="aspect-[4/5]" priority />
 
           {/* floating chips */}
-          <div className="absolute -left-4 bottom-8 hidden rounded-2xl border border-white/10 bg-ink px-4 py-3 shadow-xl sm:block">
+          <div className="absolute -left-4 bottom-8 hidden rounded-2xl border border-border bg-bg-elevated px-4 py-3 shadow-xl sm:block">
             <div className="flex items-center gap-2 text-lime-2">
               <Clock className="h-4 w-4" />
-              <span className="text-2xl font-semibold">24h</span>
+              <span className="text-2xl font-semibold text-fg">24h</span>
             </div>
-            <p className="mt-0.5 text-xs on-ink-muted">bis zur Rückmeldung</p>
+            <p className="mt-0.5 text-xs text-fg-muted">bis zur Rückmeldung</p>
           </div>
-          <div className="absolute -right-3 top-8 hidden rounded-full border border-white/10 bg-ink px-4 py-2 text-sm font-medium shadow-xl sm:block">
-            🇽🇰 🇦🇱 🇲🇰 <span className="on-ink-muted">· zweisprachig</span>
+          <div className="absolute -right-3 top-8 hidden rounded-full border border-border bg-bg-elevated px-4 py-2 text-sm font-medium shadow-xl sm:block">
+            🇽🇰 🇦🇱 🇲🇰 <span className="text-fg-muted">· zweisprachig</span>
           </div>
         </motion.div>
       </section>
@@ -137,7 +142,7 @@ function ChooserRow({
   return (
     <Link
       href={href}
-      className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-ink-2 p-4 transition-colors hover:border-lime/40 focus:outline-none focus-visible:border-lime sm:p-5"
+      className="group flex items-center gap-4 rounded-2xl border border-border bg-bg-elevated p-4 transition-all hover:border-lime-2 hover:shadow-lg focus:outline-none focus-visible:border-lime-2 sm:p-5"
     >
       <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-lime text-on-lime transition-transform group-hover:scale-105">
         <Icon className="h-6 w-6" strokeWidth={1.9} />
@@ -147,9 +152,9 @@ function ChooserRow({
           {kicker}
         </span>
         <span className="mt-0.5 block text-lg font-semibold">{title}</span>
-        <span className="mt-0.5 block text-sm on-ink-muted">{subtitle}</span>
+        <span className="mt-0.5 block text-sm text-fg-muted">{subtitle}</span>
       </span>
-      <ArrowUpRight className="h-5 w-5 shrink-0 text-white/40 transition-all group-hover:text-lime-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      <ArrowUpRight className="h-5 w-5 shrink-0 text-fg-subtle transition-all group-hover:text-lime-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
     </Link>
   );
 }

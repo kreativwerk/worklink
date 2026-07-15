@@ -73,7 +73,7 @@ export default function UnternehmenPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="surface-ink dot-texture relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-card)] p-8">
+            <div className="surface-soft relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-card)] border border-border p-8">
               <Image
                 src="/germany-map.svg"
                 alt="Deutschland"
@@ -81,9 +81,9 @@ export default function UnternehmenPage() {
                 height={340}
                 className="relative opacity-90"
               />
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-ink-2 p-5">
+              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-border bg-bg-elevated p-5">
                 <p className="text-3xl font-semibold text-lime-2">24h</p>
-                <p className="mt-1 text-sm on-ink-muted">
+                <p className="mt-1 text-sm text-fg-muted">
                   bis zur Rückmeldung mit konkreten Kandidatenprofilen
                 </p>
               </div>
@@ -104,8 +104,8 @@ export default function UnternehmenPage() {
         </div>
       </section>
 
-      {/* Warum Westbalkan (dark) */}
-      <section className="surface-ink dot-texture">
+      {/* Warum Westbalkan */}
+      <section className="surface-soft border-y border-border">
         <div className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16 lg:py-24">
           <SectionHeading
             pill="Fachkräfte aus dem Westbalkan"
@@ -115,9 +115,9 @@ export default function UnternehmenPage() {
           <div className="mt-12 grid gap-4 md:grid-cols-2">
             {WHY_BALKAN.map((w, i) => (
               <Reveal key={w.title} delay={(i % 2) * 0.08}>
-                <div className="rounded-[var(--radius-card)] border border-white/10 bg-ink-2 p-7">
+                <div className="rounded-[var(--radius-card)] border border-border bg-bg-elevated p-7">
                   <h3 className="text-xl font-semibold text-lime-2">{w.title}</h3>
-                  <p className="mt-3 on-ink-muted">{w.text}</p>
+                  <p className="mt-3 text-fg-muted">{w.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -171,9 +171,9 @@ export default function UnternehmenPage() {
           intro="Unverbindlich und kostenlos. Antwort innerhalb von 24 Stunden."
         />
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
-          <div className="surface-ink dot-texture rounded-[var(--radius-card)] p-8">
+          <div className="surface-soft rounded-[var(--radius-card)] border border-border p-8">
             <h3 className="text-2xl font-semibold">Lieber direkt sprechen?</h3>
-            <p className="mt-3 on-ink-muted">
+            <p className="mt-3 text-fg-muted">
               Ein Anruf reicht. Wir melden uns innerhalb von 24 Stunden mit
               konkreten nächsten Schritten zurück.
             </p>
@@ -181,7 +181,7 @@ export default function UnternehmenPage() {
               <a href={CONTACT.phoneHref} className="btn btn-lime w-full">
                 <Phone className="h-4 w-4" /> {CONTACT.phone}
               </a>
-              <a href={CONTACT.whatsapp} className="btn btn-outline w-full border-white/15 text-white">
+              <a href={CONTACT.whatsapp} className="btn btn-outline w-full">
                 <MessageCircle className="h-4 w-4" /> WhatsApp
               </a>
             </div>

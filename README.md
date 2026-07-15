@@ -6,9 +6,17 @@ Westbalkan** verbindet. Die Landingpage teilt Besucher direkt in zwei Pfade:
 - **Unternehmen** (`/unternehmen`) — Personalanfrage stellen, Fachkräfte finden.
 - **Bewerber** (`/bewerber`) — in Minuten bei deutschen Firmen bewerben, inkl. CV-Upload.
 
-Modernes Agentur-/Consulting-Design (dunkles Petrol + Lime-Akzent, Pill-Labels,
-Stat-Kacheln, abgerundete Karten, Light-/Dark-Mode, Scroll-Animationen),
-zweisprachige Inhalte (Deutsch / Albanisch).
+Helles, modernes Design (heller Grundton + Lime-Akzent, Petrol für Text/Buttons,
+Pill-Labels, Stat-Kacheln, abgerundete Karten, Light-/Dark-Mode,
+Scroll-Animationen), zweisprachige Inhalte.
+
+**Bewerbungsformular (`/bewerben`)** ist ein mehrstufiger Wizard:
+- Erste Frage = Sprache (Shqip / Bosanski / Hrvatski) → Formular in der Sprache
+- Einfachauswahl springt automatisch weiter, Eingaben/Uploads mit „Weiter"
+- Erfasst genau die Dashboard-Felder: Identität, Adresse, Kontakt & Größen,
+  Vorauswahl (Beschäftigung, Lkw-Führerschein, Berufsfeld, Amazon-Erfahrung),
+  Dokumente (Ausweis, Selfie, Führerschein) **plus Zeugnisse/Zertifikate**,
+  DSGVO-Einwilligung. Übersetzungen in `src/lib/apply-i18n.ts`.
 
 Die Marketing-Inhalte (Branchen, Vorteile, 5-Schritte-Ablauf, FAQ, Kontakt)
 stammen strukturell aus dem Agentur-Gashi-Bestand und liegen zentral in

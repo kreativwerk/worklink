@@ -33,7 +33,7 @@ export function MediaFrame({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[var(--radius-card)] border border-white/10",
+        "relative overflow-hidden rounded-[var(--radius-card)] border border-border",
         aspect,
         className,
       )}
@@ -67,18 +67,18 @@ export function MediaFrame({
 
 function Placeholder({ label }: { label: string }) {
   return (
-    <div className="dot-texture absolute inset-0 grid place-items-center bg-ink-2">
+    <div className="surface-soft absolute inset-0 grid place-items-center">
       {/* soft lime glow */}
       <div
-        className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-30 blur-3xl"
+        className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-40 blur-3xl"
         style={{ background: "var(--lime)" }}
         aria-hidden
       />
       <div className="relative flex flex-col items-center gap-4 px-6 text-center">
-        <span className="grid h-16 w-16 place-items-center rounded-2xl border border-white/10 bg-ink text-lime-2">
+        <span className="grid h-16 w-16 place-items-center rounded-2xl border border-border bg-bg-elevated text-lime-2">
           <ImageIcon className="h-7 w-7" strokeWidth={1.6} />
         </span>
-        <p className="max-w-[16rem] text-sm text-white/60">{label}</p>
+        <p className="max-w-[16rem] text-sm text-fg-muted">{label}</p>
         <span className="mt-1 inline-flex items-center gap-2 rounded-full bg-lime px-4 py-1.5 text-xs font-semibold text-on-lime">
           <Play className="h-3.5 w-3.5" /> Platzhalter
         </span>
