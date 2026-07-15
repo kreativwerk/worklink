@@ -1,10 +1,41 @@
-import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, Mail, ArrowUpRight } from "lucide-react";
+import {
+  MessageCircle,
+  Mail,
+  ArrowUpRight,
+  HeartPulse,
+  Sparkles,
+  Headset,
+  Truck,
+  Briefcase,
+  Megaphone,
+  Hammer,
+  Warehouse,
+  UtensilsCrossed,
+  ConciergeBell,
+  Factory,
+  ShoppingCart,
+  type LucideIcon,
+} from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { Logo } from "@/components/logo";
 import { CONTACT, INDUSTRIES, STATS } from "@/lib/content";
 import { cn } from "@/lib/utils";
+
+const INDUSTRY_ICONS: Record<string, LucideIcon> = {
+  pflege: HeartPulse,
+  reinigung: Sparkles,
+  service: Headset,
+  transport: Truck,
+  buero: Briefcase,
+  marketing: Megaphone,
+  handwerk: Hammer,
+  logistik: Warehouse,
+  systemgastro: UtensilsCrossed,
+  hotel: ConciergeBell,
+  produktion: Factory,
+  handel: ShoppingCart,
+};
 
 /* --- Pill label -------------------------------------------------------- */
 export function Pill({ children }: { children: React.ReactNode }) {
@@ -68,27 +99,25 @@ export function StatTiles() {
   );
 }
 
-/* --- Industry grid ----------------------------------------------------- */
+/* --- Industry grid (icon cards) ---------------------------------------- */
 export function IndustryGrid({ lang = "de" }: { lang?: "de" | "sq" }) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-      {INDUSTRIES.map((ind, i) => (
-        <Reveal key={ind.key} delay={(i % 4) * 0.05}>
-          <div className="group relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card-sm)]">
-            <Image
-              src={ind.img}
-              alt={ind[lang]}
-              fill
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
-            <span className="absolute bottom-3 left-4 text-lg font-semibold text-white">
-              {ind[lang]}
-            </span>
-          </div>
-        </Reveal>
-      ))}
+      {INDUSTRIES.map((ind, i) => {
+        const Icon = INDUSTRY_ICONS[ind.key] ?? Briefcase;
+        return (
+          <Reveal key={ind.key} delay={(i % 4) * 0.05}>
+            <div className="group flex h-full items-center gap-3.5 rounded-2xl border border-border bg-bg-elevated p-4 transition-colors hover:border-lime-2 sm:p-5">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-lime/15 text-lime-2 transition-colors group-hover:bg-lime group-hover:text-on-lime">
+                <Icon className="h-5 w-5" strokeWidth={1.9} />
+              </span>
+              <span className="text-[15px] font-semibold leading-snug">
+                {ind[lang]}
+              </span>
+            </div>
+          </Reveal>
+        );
+      })}
     </div>
   );
 }

@@ -80,7 +80,7 @@ export default function BewerberPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="surface-soft relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-card)] border border-border p-8">
+            <div className="relative aspect-square overflow-hidden rounded-[var(--radius-card)]">
               <Image
                 src="/hero.webp"
                 alt="Fahrer bei der Arbeit in Deutschland"
@@ -88,9 +88,17 @@ export default function BewerberPage() {
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="object-cover"
               />
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-border bg-bg-elevated p-5">
-                <p className="text-3xl font-semibold text-lime-2">Falas</p>
-                <p className="mt-1 text-sm text-fg-muted">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, color-mix(in oklab, var(--ink) 80%, transparent) 0%, transparent 55%)",
+                }}
+                aria-hidden
+              />
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <p className="text-3xl font-semibold text-lime">Falas</p>
+                <p className="mt-1 text-sm text-white/80">
                   Aplikimi është plotësisht falas për kandidatët
                 </p>
               </div>

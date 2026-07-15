@@ -10,21 +10,21 @@ export const CONTACT = {
   whatsapp: "",
 };
 
-export type Industry = { key: string; de: string; sq: string; img: string };
+export type Industry = { key: string; de: string; sq: string };
 
 export const INDUSTRIES: Industry[] = [
-  { key: "pflege", de: "Pflege & Medizin", sq: "Kujdes & Mjekësi", img: "/industries/medizin.webp" },
-  { key: "reinigung", de: "Gebäudereinigung", sq: "Pastrim profesional", img: "/industries/reinigung.webp" },
-  { key: "service", de: "Callcenter & Service", sq: "Qendër thirrjesh", img: "/industries/kundenservice.webp" },
-  { key: "transport", de: "Transport & Fahrer", sq: "Transport & Shoferë", img: "/industries/transport.webp" },
-  { key: "buero", de: "Büro & Verwaltung", sq: "Zyrë & Administratë", img: "/industries/backoffice.webp" },
-  { key: "marketing", de: "Marketing & Medien", sq: "Marketing & Media", img: "/industries/marketing.webp" },
-  { key: "handwerk", de: "Bau & Handwerk", sq: "Ndërtim & Zeje", img: "/industries/handwerk.webp" },
-  { key: "logistik", de: "Lager & Logistik", sq: "Depo & Logjistikë", img: "/industries/logistik.webp" },
-  { key: "systemgastro", de: "Systemgastronomie", sq: "Gastronomi e shpejtë", img: "/industries/fastfood.webp" },
-  { key: "hotel", de: "Hotel & Gastronomie", sq: "Hotel & Gastronomi", img: "/industries/gastronomie.webp" },
-  { key: "produktion", de: "Produktion & Industrie", sq: "Prodhim & Industri", img: "/industries/industrie.webp" },
-  { key: "handel", de: "Handel & Vertrieb", sq: "Tregti & Shitje", img: "/industries/vertrieb.webp" },
+  { key: "pflege", de: "Pflege & Medizin", sq: "Kujdes & Mjekësi" },
+  { key: "reinigung", de: "Gebäudereinigung", sq: "Pastrim profesional" },
+  { key: "service", de: "Callcenter & Service", sq: "Qendër thirrjesh" },
+  { key: "transport", de: "Transport & Fahrer", sq: "Transport & Shoferë" },
+  { key: "buero", de: "Büro & Verwaltung", sq: "Zyrë & Administratë" },
+  { key: "marketing", de: "Marketing & Medien", sq: "Marketing & Media" },
+  { key: "handwerk", de: "Bau & Handwerk", sq: "Ndërtim & Zeje" },
+  { key: "logistik", de: "Lager & Logistik", sq: "Depo & Logjistikë" },
+  { key: "systemgastro", de: "Systemgastronomie", sq: "Gastronomi e shpejtë" },
+  { key: "hotel", de: "Hotel & Gastronomie", sq: "Hotel & Gastronomi" },
+  { key: "produktion", de: "Produktion & Industrie", sq: "Prodhim & Industri" },
+  { key: "handel", de: "Handel & Vertrieb", sq: "Tregti & Shitje" },
 ];
 
 /** Warum Fachkräfte aus dem Westbalkan (Unternehmensseite). */

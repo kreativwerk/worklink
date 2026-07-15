@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { MessageCircle, Check } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal } from "@/components/reveal";
@@ -75,19 +74,26 @@ export default function UnternehmenPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="surface-soft relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-card)] border border-border p-8">
-              <Image
-                src="/germany-map.svg"
-                alt="Deutschland"
-                width={340}
-                height={340}
-                className="relative opacity-90"
+            <div className="surface-ink relative overflow-hidden rounded-[var(--radius-card)] p-8 sm:p-10">
+              <div
+                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-25 blur-3xl"
+                style={{ background: "var(--lime)" }}
+                aria-hidden
               />
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-border bg-bg-elevated p-5">
-                <p className="text-3xl font-semibold text-lime-2">24h</p>
-                <p className="mt-1 text-sm text-fg-muted">
-                  bis zur Rückmeldung mit konkreten Kandidatenprofilen
-                </p>
+              <p className="text-xs font-medium uppercase tracking-[0.14em] text-lime-2">
+                So schnell geht es
+              </p>
+              <div className="mt-6 flex flex-col gap-6">
+                {[
+                  ["24h", "bis zur ersten Rückmeldung auf Ihre Anfrage"],
+                  ["Tage", "bis Sie geprüfte Kandidatenprofile erhalten"],
+                  ["1", "fester Ansprechpartner durch das ganze Verfahren"],
+                ].map(([v, l]) => (
+                  <div key={l} className="border-t border-white/10 pt-4 first:border-0 first:pt-0">
+                    <p className="text-4xl font-semibold text-lime-2">{v}</p>
+                    <p className="mt-1 text-sm on-ink-muted">{l}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </Reveal>
@@ -106,25 +112,30 @@ export default function UnternehmenPage() {
         </div>
       </section>
 
-      {/* Warum Westbalkan */}
-      <section className="surface-soft border-y border-border">
-        <div className="mx-auto w-[min(72rem,calc(100%-2rem))] py-16 lg:py-24">
+      {/* Warum Westbalkan (dunkel, wie Landing-Karte) */}
+      <section className="mx-auto w-[min(72rem,calc(100%-2rem))] py-8">
+        <div className="surface-ink relative overflow-hidden rounded-[var(--radius-card)] p-8 sm:p-12">
+          <div
+            className="pointer-events-none absolute -left-20 -bottom-20 h-64 w-64 rounded-full opacity-20 blur-3xl"
+            style={{ background: "var(--lime)" }}
+            aria-hidden
+          />
           <SectionHeading
             pill="Fachkräfte aus dem Westbalkan"
             title="Warum der Westbalkan?"
             intro="Vier Gründe, warum die Region für deutsche Arbeitgeber so gut funktioniert."
           />
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
+          <div className="relative mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
             {WHY_POINTS.map((w, i) => (
               <Reveal key={w.title} delay={(i % 2) * 0.08}>
-                <div className="rounded-[var(--radius-card)] border border-border bg-bg-elevated p-7">
+                <div className="border-t border-white/10 pt-5">
                   <h3 className="text-xl font-semibold text-lime-2">{w.title}</h3>
-                  <p className="mt-3 text-fg-muted">{w.text}</p>
+                  <p className="mt-2.5 on-ink-muted">{w.text}</p>
                 </div>
               </Reveal>
             ))}
           </div>
-          <div className="mt-14">
+          <div className="relative mt-12">
             <StatTiles />
           </div>
         </div>
