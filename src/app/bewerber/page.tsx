@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Check, ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
@@ -80,27 +79,26 @@ export default function BewerberPage() {
           </div>
 
           <Reveal delay={0.15}>
-            <div className="relative aspect-square overflow-hidden rounded-[var(--radius-card)]">
-              <Image
-                src="/hero.webp"
-                alt="Fahrer bei der Arbeit in Deutschland"
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover"
-              />
+            <div className="surface-ink relative overflow-hidden rounded-[var(--radius-card)] p-8 sm:p-10">
               <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(to top, color-mix(in oklab, var(--ink) 80%, transparent) 0%, transparent 55%)",
-                }}
+                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-25 blur-3xl"
+                style={{ background: "var(--lime)" }}
                 aria-hidden
               />
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <p className="text-3xl font-semibold text-lime">Falas</p>
-                <p className="mt-1 text-sm text-white/80">
-                  Aplikimi është plotësisht falas për kandidatët
-                </p>
+              <p className="text-xs font-medium uppercase tracking-[0.14em] text-lime-2">
+                Pse WorkLink?
+              </p>
+              <div className="mt-6 flex flex-col gap-6">
+                {[
+                  ["Falas", "aplikimi dhe ndërmjetësimi — pa asnjë kosto për ty"],
+                  ["3 gjuhë", "Shqip · Bosanski · Hrvatski — apliko në gjuhën tënde"],
+                  ["5 hapa", "nga aplikimi deri në ditën e parë të punës në Gjermani"],
+                ].map(([v, l]) => (
+                  <div key={l} className="border-t border-white/10 pt-4 first:border-0 first:pt-0">
+                    <p className="text-4xl font-semibold text-lime-2">{v}</p>
+                    <p className="mt-1 text-sm on-ink-muted">{l}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </Reveal>
