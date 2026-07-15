@@ -20,6 +20,7 @@ services:
 
   app:
     build: .
+    container_name: worklink-app
     restart: unless-stopped
     depends_on:
       db:
@@ -34,8 +35,13 @@ services:
     expose:
       - "3000"
 
+  # Nur nötig, wenn WorkLink der einzige Dienst auf dem Server ist.
+  # Läuft bereits ein zentraler Reverse-Proxy (z. B. der Caddy einer anderen
+  # App), diesen Dienst weglassen — Start dann mit: docker compose up -d
+  # (Profil "standalone" aktiviert ihn: docker compose --profile standalone up -d)
   caddy:
     image: caddy:2-alpine
+    profiles: ["standalone"]
     restart: unless-stopped
     depends_on:
       - app
