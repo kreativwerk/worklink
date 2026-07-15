@@ -46,7 +46,7 @@ export default function BewerberPage() {
               <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
                 Karriera jote
                 <br />
-                <span className="text-ink">në Gjermani.</span>
+                <span className="text-lime-2">në Gjermani.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>

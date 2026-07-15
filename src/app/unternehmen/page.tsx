@@ -40,7 +40,7 @@ export default function UnternehmenPage() {
               <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
                 Die richtigen Arbeitskräfte.
                 <br />
-                <span className="text-ink">Ohne den Aufwand.</span>
+                <span className="text-lime-2">Ohne den Aufwand.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
