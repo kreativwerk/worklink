@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { db } from "@/lib/db";
+import { saveUpload } from "@/lib/storage";
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB
 const ALLOWED = ["application/pdf", "image/jpeg", "image/png"];
@@ -15,8 +17,6 @@ const REQUIRED_FIELDS = [
   "field",
 ];
 
-type FileMeta = { name: string; type: string; size: number };
-
 function checkFile(f: File) {
   if (!ALLOWED.includes(f.type)) return "Dateityp nicht erlaubt (PDF, JPG, PNG)";
   if (f.size > MAX_FILE_BYTES) return "Datei zu groß (max. 10 MB)";
@@ -25,11 +25,8 @@ function checkFile(f: File) {
 
 /**
  * POST /api/bewerbung — mehrstufige Bewerbung (multipart).
- * Felder: Vorauswahl, Identität, Adresse, Kontakt/Größen, Einwilligung.
- * Dateien: Ausweis/Selfie/Führerschein + mehrere Zeugnisse (certificates).
- *
- * TODO(persistenz + storage): Dateien in Objektspeicher (Supabase/R2/S3),
- * Metadaten + Antworten in die DB. Aktuell: validieren + loggen.
+ * Speichert Antworten in PostgreSQL und Dateien (Ausweis/Selfie/Führerschein +
+ * mehrere Zeugnisse) im Upload-Verzeichnis auf dem VPS.
  */
 export async function POST(req: Request) {
   const form = await req.formData().catch(() => null);
@@ -54,18 +51,22 @@ export async function POST(req: Request) {
     );
   }
 
-  // --- single-file documents ---
-  const documents: Record<string, FileMeta> = {};
+  // --- collect + validate files (single-slot docs + certificates) ---
+  const incoming: { slot: string; file: File }[] = [];
   for (const slot of DOC_SLOTS) {
     const f = form.get(slot);
-    if (f instanceof File && f.size > 0) {
-      const err = checkFile(f);
-      if (err) return NextResponse.json({ error: `${slot}: ${err}` }, { status: 415 });
-      documents[slot] = { name: f.name, type: f.type, size: f.size };
-      // await storage.upload(`applications/${id}/${slot}`, Buffer.from(await f.arrayBuffer()))
-    }
+    if (f instanceof File && f.size > 0) incoming.push({ slot, file: f });
   }
-  const missingDocs = REQUIRED_DOCS.filter((d) => !documents[d]);
+  for (const f of form.getAll("certificates")) {
+    if (f instanceof File && f.size > 0) incoming.push({ slot: "certificate", file: f });
+  }
+  for (const { slot, file } of incoming) {
+    const err = checkFile(file);
+    if (err) return NextResponse.json({ error: `${slot}: ${err}` }, { status: 415 });
+  }
+
+  const presentSlots = new Set(incoming.map((i) => i.slot));
+  const missingDocs = REQUIRED_DOCS.filter((d) => !presentSlots.has(d));
   if (missingDocs.length) {
     return NextResponse.json(
       { error: "Pflichtdokumente fehlen", documents: missingDocs },
@@ -73,55 +74,50 @@ export async function POST(req: Request) {
     );
   }
 
-  // --- multiple certificates ---
-  const certificates: FileMeta[] = [];
-  for (const f of form.getAll("certificates")) {
-    if (f instanceof File && f.size > 0) {
-      const err = checkFile(f);
-      if (err) return NextResponse.json({ error: `certificate: ${err}` }, { status: 415 });
-      certificates.push({ name: f.name, type: f.type, size: f.size });
-    }
+  const consentAt = get("dsgvoConsentAt");
+
+  try {
+    // persist files to disk, then the application + document metadata
+    const subdir = new Date().toISOString().slice(0, 7); // yyyy-MM buckets
+    const documents = await Promise.all(
+      incoming.map(async ({ slot, file }) => {
+        const meta = await saveUpload(file, subdir);
+        return { slot, ...meta };
+      }),
+    );
+
+    const created = await db.application.create({
+      data: {
+        lang: get("lang") || null,
+        employment: get("employment") || null,
+        truckLicense: get("truckLicense") || null,
+        field: get("field") || null,
+        amazonExperience: get("amazon") || null,
+        firstName: get("firstName"),
+        lastName: get("lastName"),
+        dob: get("dob") || null,
+        placeOfBirth: get("placeOfBirth") || null,
+        nationality: get("nationality") || null,
+        countryOfBirth: get("countryOfBirth") || null,
+        street: get("street") || null,
+        postalCode: get("postal") || null,
+        city: get("city") || null,
+        livingSince: get("livingSince") || null,
+        email: get("email"),
+        phone: get("phone"),
+        tshirtSize: get("tshirt") || null,
+        shoeSize: get("shoe") || null,
+        dsgvoConsent: true,
+        dsgvoConsentAt: consentAt ? new Date(consentAt) : null,
+        documents: { create: documents },
+      },
+      select: { id: true },
+    });
+
+    console.info("[bewerbung] neue Bewerbung", created.id, `(${documents.length} Dokumente)`);
+    return NextResponse.json({ ok: true, id: created.id });
+  } catch (err) {
+    console.error("[bewerbung] Fehler", err);
+    return NextResponse.json({ error: "Serverfehler" }, { status: 500 });
   }
-
-  const application = {
-    type: "candidate_application" as const,
-    lang: get("lang"),
-    // Vorauswahl
-    employment: get("employment"),
-    truckLicense: get("truckLicense"),
-    field: get("field"),
-    amazonPartnerExperience: get("amazon"),
-    // Identität
-    firstName: get("firstName"),
-    lastName: get("lastName"),
-    dob: get("dob"),
-    placeOfBirth: get("placeOfBirth") || null,
-    nationality: get("nationality"),
-    countryOfBirth: get("countryOfBirth") || null,
-    // Adresse
-    street: get("street"),
-    postal: get("postal") || null,
-    city: get("city"),
-    livingSince: get("livingSince") || null,
-    // Kontakt & Größen
-    email: get("email"),
-    phone: get("phone"),
-    tshirtSize: get("tshirt") || null,
-    shoeSize: get("shoe") || null,
-    // Dokumente
-    documents,
-    certificates,
-    // DSGVO
-    dsgvoConsent: get("dsgvoConsent"),
-    dsgvoConsentAt: get("dsgvoConsentAt"),
-    receivedAt: new Date().toISOString(),
-  };
-
-  // await db.application.create({ data: application })
-  console.info("[bewerbung] neue Bewerbung", {
-    ...application,
-    certificates: certificates.length,
-  });
-
-  return NextResponse.json({ ok: true });
 }

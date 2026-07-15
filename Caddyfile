@@ -1,0 +1,10 @@
+# Automatisches HTTPS via Let's Encrypt für eure Domain.
+{$DOMAIN} {
+	encode gzip
+	reverse_proxy app:3000
+
+	# Uploads (CVs, Ausweise) etwas großzügiger erlauben.
+	request_body {
+		max_size 15MB
+	}
+}

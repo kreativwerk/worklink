@@ -1,0 +1,96 @@
+// WorkLink — Datenmodell (PostgreSQL, self-hosted auf dem VPS)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Recruiting-Pipeline — Status wie im bestehenden Dashboard.
+enum ApplicationStatus {
+  NEU
+  ZAV_ANFRAGE
+  VORABZUSTIMMUNG
+  VERTRAG_EZB
+  ONBOARDED
+  SCHEDULED_TRAINING
+  EINGESTELLT
+  REJECTED
+}
+
+/// Bewerbung eines Kandidaten (aus dem mehrsprachigen Formular).
+model Application {
+  id     String            @id @default(cuid())
+  status ApplicationStatus @default(NEU)
+  lang   String?
+
+  // Vorauswahl
+  employment      String?
+  truckLicense    String?
+  field           String?
+  amazonExperience String?
+
+  // Identität
+  firstName      String
+  lastName       String
+  dob            String?
+  placeOfBirth   String?
+  nationality    String?
+  countryOfBirth String?
+
+  // Adresse
+  street      String?
+  postalCode  String?
+  city        String?
+  livingSince String?
+
+  // Kontakt & Größen
+  email      String
+  phone      String
+  tshirtSize String?
+  shoeSize   String?
+
+  // Einwilligung
+  dsgvoConsent   Boolean   @default(false)
+  dsgvoConsentAt DateTime?
+
+  documents Document[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+/// Hochgeladenes Dokument (auf dem VPS gespeichert, nur Metadaten in der DB).
+model Document {
+  id            String      @id @default(cuid())
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId String
+  slot          String // idFront | idBack | selfie | licenseFront | licenseBack | certificate
+  filename      String // ursprünglicher Dateiname
+  storedName    String // Name auf der Platte
+  mime          String
+  size          Int
+  createdAt     DateTime    @default(now())
+
+  @@index([applicationId])
+}
+
+/// Personalanfrage eines Unternehmens.
+model CompanyInquiry {
+  id        String   @id @default(cuid())
+  company   String
+  contact   String
+  email     String
+  phone     String?
+  industry  String
+  headcount Int?
+  message   String
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
