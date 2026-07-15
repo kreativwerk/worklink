@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   MessageCircle,
   Mail,
@@ -221,13 +220,9 @@ export function SiteFooter() {
         <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-1.5 hover:text-fg">
           <Mail className="h-4 w-4" /> {CONTACT.email}
         </a>
-        <div className="flex gap-5">
-          <Link href="/impressum" className="hover:text-fg">Impressum</Link>
-          <Link href="/datenschutz" className="hover:text-fg">Datenschutz</Link>
-        </div>
       </div>
       <p className="mt-6 text-center text-xs text-fg-subtle">
-        © 2026 WorkLink · Vermittlung von Arbeitskräften aus dem Westbalkan
+        © 2026 WorkLink · Prishtinë, Kosovë · Vermittlung von Arbeitskräften aus dem Westbalkan
       </p>
     </footer>
   );
