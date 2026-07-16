@@ -29,7 +29,7 @@ const companyPoints = [
 ];
 
 const applicantPoints = [
-  "Apliko falas — në gjuhën tënde",
+  "Apliko në gjuhën tënde — kushte të drejta",
   "Kontratë të rregullt pune në Gjermani",
   "Të shoqërojmë deri në ditën e parë të punës",
 ];

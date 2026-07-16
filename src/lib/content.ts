@@ -54,8 +54,8 @@ export const PROMISES = [
     text: "Keine Hotline, kein Ticketsystem: Von der ersten Anfrage bis zum Arbeitsbeginn betreut Sie durchgehend dieselbe Person.",
   },
   {
-    title: "Transparent kalkuliert",
-    text: "Sie wissen vor der Zusammenarbeit, was sie kostet — ohne Kleingedrucktes und ohne Überraschungen im Nachgang.",
+    title: "Faire, transparente Preise",
+    text: "Sie kennen alle Kosten, bevor Sie sich binden — eine faire Pauschale, kein Kleingedrucktes, keine Überraschungen im Nachgang.",
   },
   {
     title: "Zwei Sprachen, kurze Wege",
@@ -70,8 +70,8 @@ export const PROMISES_SQ = [
     text: "Nga aplikimi deri në ditën e parë të punës të shoqëron i njëjti kontakt — pa u humbur nëpër zyra.",
   },
   {
-    title: "Pa kosto për kandidatët",
-    text: "Aplikimi dhe ndërmjetësimi janë falas për ty. Kushtet i sheh qartë që në fillim.",
+    title: "Çmime të drejta",
+    text: "Kushte të qarta dhe transparente që në fillim — pa kosto të fshehura dhe pa surpriza.",
   },
   {
     title: "Shqip dhe gjermanisht",
@@ -115,7 +115,7 @@ export const FAQ = [
   },
   {
     q: "Was kostet uns die Zusammenarbeit?",
-    a: "Sie zahlen eine vorab vereinbarte Vermittlungspauschale und das Gehalt Ihres neuen Mitarbeiters. Alle Konditionen stehen im Angebot, bevor Sie sich binden — versteckte Gebühren gibt es bei uns nicht.",
+    a: "Sie zahlen eine faire, vorab vereinbarte Vermittlungspauschale und das Gehalt Ihres neuen Mitarbeiters. Alle Konditionen stehen im Angebot, bevor Sie sich binden — versteckte Gebühren gibt es bei uns nicht.",
   },
   {
     q: "Wie lange dauert es vom Auftrag bis zum ersten Arbeitstag?",

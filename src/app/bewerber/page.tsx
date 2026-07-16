@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "Bewerben Sie sich in Minuten bei deutschen Unternehmen. Apliko tani për kompani gjermane.",
 };
 
-const heroPerks = ["Falas / Kostenlos", "Gjermanisht & Shqip", "Mbështetje deri në fund"];
+const heroPerks = ["Çmime të drejta", "Gjermanisht & Shqip", "Mbështetje deri në fund"];
 
 const STEPS_SQ = [
   { no: "01", title: "Apliko", text: "Plotëso formularin dhe ngarko CV-në — për pak minuta. Formular ausfüllen, CV hochladen." },
@@ -90,7 +90,7 @@ export default function BewerberPage() {
               </p>
               <div className="mt-6 flex flex-col gap-6">
                 {[
-                  ["Falas", "aplikimi dhe ndërmjetësimi — pa asnjë kosto për ty"],
+                  ["Çmime të drejta", "kushte të qarta dhe transparente — pa kosto të fshehura"],
                   ["3 gjuhë", "Shqip · Bosanski · Hrvatski — apliko në gjuhën tënde"],
                   ["5 hapa", "nga aplikimi deri në ditën e parë të punës në Gjermani"],
                 ].map(([v, l]) => (
@@ -149,8 +149,8 @@ export default function BewerberPage() {
             Apliko tani · Jetzt bewerben
           </h2>
           <p className="mx-auto mt-4 max-w-md text-fg-muted">
-            Në Shqip, Bosanski ose Hrvatski. Falas dhe pa detyrime — Formular auf
-            Albanisch, Bosnisch oder Kroatisch.
+            Në Shqip, Bosanski ose Hrvatski — me kushte të drejta e transparente.
+            Formular auf Albanisch, Bosnisch oder Kroatisch.
           </p>
           <Link href="/bewerben" className="btn btn-ink mx-auto mt-8">
             Fillo aplikimin <ArrowRight className="h-4 w-4" />

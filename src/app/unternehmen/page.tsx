@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Arbeitskräfte aus dem Westbalkan für deutsche Betriebe — geprüft, dokumentiert und durch das komplette Visumverfahren begleitet.",
 };
 
-const heroPerks = ["Fester Ansprechpartner", "Transparente Konditionen", "Antwort in 24h"];
+const heroPerks = ["Fester Ansprechpartner", "Faire Preise", "Antwort in 24h"];
 
 export default function UnternehmenPage() {
   return (
