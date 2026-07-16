@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { CONTACT } from "@/lib/content";
+import { BUILD_STAMP } from "@/lib/build-info";
 
 const fade = {
   hidden: { opacity: 0, y: 24 },
@@ -201,6 +202,11 @@ export default function Home() {
           <span className="hidden h-1 w-1 rounded-full bg-fg-subtle sm:block" />
           <span>Antwort in 24 Stunden</span>
         </motion.div>
+
+        {/* Versions-Stempel (Build-Zeit, deutsche Zeit) */}
+        <p className="mt-10 text-center text-[11px] text-fg-subtle/60">
+          Stand: {BUILD_STAMP} Uhr
+        </p>
       </div>
     </main>
   );
