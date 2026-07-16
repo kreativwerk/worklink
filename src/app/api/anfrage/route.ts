@@ -18,7 +18,7 @@ export async function POST(req: Request) {
 
   const get = (k: string) => String(form.get(k) ?? "").trim();
 
-  const required = ["company", "contact", "email", "industry", "city"];
+  const required = ["company", "contact", "email", "jobDescription", "city"];
   const missing = required.filter((k) => !get(k));
   if (missing.length) {
     return NextResponse.json(
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
         email: get("email"),
         phone: get("phone") || null,
         city: get("city") || null,
-        industry: get("industry"),
+        jobDescription: get("jobDescription"),
         headcount: get("headcount") || null,
         startDate: get("startDate") || null,
         driverLicense: get("driverLicense") || null,

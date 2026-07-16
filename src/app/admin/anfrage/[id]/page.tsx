@@ -27,7 +27,7 @@ export default async function InquiryDetail({
     ["Einsatzort", q.city],
   ];
   const bedarf: Row[] = [
-    ["Branche", q.industry],
+    ["Stelle", q.jobDescription ?? q.industry],
     ["Anzahl Mitarbeiter", q.headcount],
     ["Start", q.startDate],
   ];

@@ -122,7 +122,7 @@ export default async function AdminPage() {
                 <tr>
                   <Th>Firma</Th>
                   <Th>Ansprechpartner</Th>
-                  <Th>Branche</Th>
+                  <Th>Stelle</Th>
                   <Th>Bedarf</Th>
                   <Th>Unterkunft</Th>
                   <Th>Eingegangen</Th>
@@ -144,7 +144,9 @@ export default async function AdminPage() {
                       <br />
                       <span className="text-xs">{q.email}</span>
                     </Td>
-                    <Td>{q.industry}</Td>
+                    <Td className="max-w-56">
+                      <span className="line-clamp-2">{q.jobDescription ?? q.industry ?? "—"}</span>
+                    </Td>
                     <Td>{q.headcount ?? "—"}</Td>
                     <Td>{q.accommodation ?? "—"}</Td>
                     <Td className="whitespace-nowrap text-fg-muted">{fmt(q.createdAt)}</Td>

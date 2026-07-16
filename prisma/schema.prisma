@@ -89,9 +89,10 @@ model CompanyInquiry {
   city    String? // Einsatzort (PLZ/Ort)
 
   // Bedarf
-  industry  String
-  headcount String? // z. B. "2–5"
-  startDate String? // z. B. "So bald wie möglich"
+  jobDescription String? // kurze Beschreibung der Stelle(n)
+  industry       String? // Altbestand (früher Branchen-Auswahl)
+  headcount      String? // z. B. "2–5"
+  startDate      String? // z. B. "So bald wie möglich"
 
   // Anforderungen an die Mitarbeiter
   driverLicense String? // Pflicht Pkw / Pflicht Lkw / Wünschenswert / Nicht erforderlich

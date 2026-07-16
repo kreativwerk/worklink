@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { MultiFileSlot } from "@/components/apply/file-slot";
-import { INDUSTRIES } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 type Field = {
@@ -25,6 +24,7 @@ type Field = {
 
 type Step =
   | { kind: "single"; key: string; question: string; hint?: string; options: string[]; grid?: boolean }
+  | { kind: "job-description" }
   | { kind: "pay-amount" }
   | { kind: "multi"; key: string; question: string; hint?: string; options: string[]; exclusive?: string }
   | { kind: "accommodation-details" }
@@ -44,13 +44,7 @@ const PAY_EXTRAS = [
 
 function buildSteps(hasAccommodation: boolean): Step[] {
   return [
-    {
-      kind: "single",
-      key: "industry",
-      question: "Für welche Branche suchen Sie Personal?",
-      grid: true,
-      options: [...INDUSTRIES.map((i) => i.de), "Sonstiges"],
-    },
+    { kind: "job-description" },
     {
       kind: "single",
       key: "headcount",
@@ -297,6 +291,27 @@ export function InquiryWizard() {
               </div>
             )}
 
+            {step.kind === "job-description" && (
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                  Wen suchen Sie? Beschreiben Sie die Stelle kurz.
+                </h2>
+                <p className="mt-2 text-sm text-fg-subtle">
+                  Ein bis zwei Sätze reichen — Tätigkeit, ggf. Schicht oder
+                  Besonderheiten.
+                </p>
+                <textarea
+                  autoFocus
+                  value={data.jobDescription ?? ""}
+                  onChange={(e) =>
+                    setData((d) => ({ ...d, jobDescription: e.target.value }))
+                  }
+                  placeholder="z. B. Lkw-Fahrer (C/CE) für den Nahverkehr, 2-Schicht-Betrieb, Palettentausch"
+                  className="mt-8 min-h-28 w-full resize-y rounded-xl border border-border bg-bg-elevated px-4 py-3 text-[15px] outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
+                />
+              </div>
+            )}
+
             {step.kind === "pay-amount" && (
               <div>
                 <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -462,7 +477,7 @@ export function InquiryWizard() {
                 {/* Zusammenfassung */}
                 <dl className="mt-6 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-bg-elevated">
                   {[
-                    ["Branche", data.industry],
+                    ["Stelle", data.jobDescription],
                     ["Anzahl Mitarbeiter", data.headcount],
                     ["Start", data.startDate],
                     ["Bezahlung", data.payType],
@@ -522,6 +537,14 @@ export function InquiryWizard() {
             </button>
           ) : step.kind === "accommodation-details" ? (
             <button onClick={advance} className="btn btn-lime">
+              Weiter <ArrowRight className="h-4 w-4" />
+            </button>
+          ) : step.kind === "job-description" ? (
+            <button
+              onClick={advance}
+              disabled={!(data.jobDescription ?? "").trim()}
+              className="btn btn-lime"
+            >
               Weiter <ArrowRight className="h-4 w-4" />
             </button>
           ) : step.kind === "pay-amount" ? (
