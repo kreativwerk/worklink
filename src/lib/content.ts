@@ -10,21 +10,21 @@ export const CONTACT = {
   whatsapp: "",
 };
 
-export type Industry = { key: string; de: string; sq: string };
+export type Industry = { key: string; de: string; sq: string; bs: string; hr: string };
 
 export const INDUSTRIES: Industry[] = [
-  { key: "pflege", de: "Pflege & Medizin", sq: "Kujdes & Mjekësi" },
-  { key: "reinigung", de: "Gebäudereinigung", sq: "Pastrim profesional" },
-  { key: "service", de: "Callcenter & Service", sq: "Qendër thirrjesh" },
-  { key: "transport", de: "Transport & Fahrer", sq: "Transport & Shoferë" },
-  { key: "buero", de: "Büro & Verwaltung", sq: "Zyrë & Administratë" },
-  { key: "marketing", de: "Marketing & Medien", sq: "Marketing & Media" },
-  { key: "handwerk", de: "Bau & Handwerk", sq: "Ndërtim & Zeje" },
-  { key: "logistik", de: "Lager & Logistik", sq: "Depo & Logjistikë" },
-  { key: "systemgastro", de: "Systemgastronomie", sq: "Gastronomi e shpejtë" },
-  { key: "hotel", de: "Hotel & Gastronomie", sq: "Hotel & Gastronomi" },
-  { key: "produktion", de: "Produktion & Industrie", sq: "Prodhim & Industri" },
-  { key: "handel", de: "Handel & Vertrieb", sq: "Tregti & Shitje" },
+  { key: "pflege", de: "Pflege & Medizin", sq: "Kujdes & Mjekësi", bs: "Njega i medicina", hr: "Njega i medicina" },
+  { key: "reinigung", de: "Gebäudereinigung", sq: "Pastrim profesional", bs: "Čišćenje objekata", hr: "Čišćenje objekata" },
+  { key: "service", de: "Callcenter & Service", sq: "Qendër thirrjesh", bs: "Pozivni centar i podrška", hr: "Pozivni centar i podrška" },
+  { key: "transport", de: "Transport & Fahrer", sq: "Transport & Shoferë", bs: "Transport i vozači", hr: "Transport i vozači" },
+  { key: "buero", de: "Büro & Verwaltung", sq: "Zyrë & Administratë", bs: "Kancelarija i administracija", hr: "Ured i administracija" },
+  { key: "marketing", de: "Marketing & Medien", sq: "Marketing & Media", bs: "Marketing i mediji", hr: "Marketing i mediji" },
+  { key: "handwerk", de: "Bau & Handwerk", sq: "Ndërtim & Zeje", bs: "Građevina i zanati", hr: "Graditeljstvo i obrt" },
+  { key: "logistik", de: "Lager & Logistik", sq: "Depo & Logjistikë", bs: "Skladište i logistika", hr: "Skladište i logistika" },
+  { key: "systemgastro", de: "Systemgastronomie", sq: "Gastronomi e shpejtë", bs: "Brza gastronomija", hr: "Brza gastronomija" },
+  { key: "hotel", de: "Hotel & Gastronomie", sq: "Hotel & Gastronomi", bs: "Hotel i ugostiteljstvo", hr: "Hotelijerstvo i ugostiteljstvo" },
+  { key: "produktion", de: "Produktion & Industrie", sq: "Prodhim & Industri", bs: "Proizvodnja i industrija", hr: "Proizvodnja i industrija" },
+  { key: "handel", de: "Handel & Vertrieb", sq: "Tregti & Shitje", bs: "Trgovina i prodaja", hr: "Trgovina i prodaja" },
 ];
 
 /** Warum Arbeitskräfte aus dem Westbalkan (Unternehmensseite). */

@@ -34,6 +34,18 @@ type Dict = {
   q_truck: string;
   q_field: string;
   q_code95: string;
+  q_name: string;
+  q_birth: string;
+  q_nationality: string;
+  q_address: string;
+  q_contact: string;
+  q_tshirt: string;
+  q_shoe: string;
+  doc_id_title: string;
+  doc_selfie_title: string;
+  doc_license_title: string;
+  doc_certs_title: string;
+  comingSoon: string;
   // identity
   sec_identity: string;
   firstName: string;
@@ -93,6 +105,18 @@ export const DICT: Record<Lang, Dict> = {
     q_truck: "A ke patentë kamioni (Lkw)?",
     q_field: "Në cilën fushë dëshiron të punosh?",
     q_code95: "A e ke Kodin 95 (kualifikimi profesional për shoferë)?",
+    q_name: "Si quhesh?",
+    q_birth: "Kur dhe ku ke lindur?",
+    q_nationality: "Cila është shtetësia jote?",
+    q_address: "Ku banon?",
+    q_contact: "Si të të kontaktojmë?",
+    q_tshirt: "Cila është madhësia e bluzës?",
+    q_shoe: "Cili është numri i këpucëve?",
+    doc_id_title: "Ngarko letërnjoftimin ose pasaportën",
+    doc_selfie_title: "Ngarko një selfie",
+    doc_license_title: "Ngarko patentën e shoferit",
+    doc_certs_title: "Dëftesa / certifikata (opsionale)",
+    comingSoon: "Së shpejti",
     sec_identity: "Të dhënat personale",
     firstName: "Emri",
     lastName: "Mbiemri",
@@ -147,6 +171,18 @@ export const DICT: Record<Lang, Dict> = {
     q_truck: "Imaš li vozačku za kamion (Lkw)?",
     q_field: "U kojem području želiš raditi?",
     q_code95: "Imaš li Kod 95 (kvalifikacija profesionalnog vozača)?",
+    q_name: "Kako se zoveš?",
+    q_birth: "Kada i gdje si rođen/a?",
+    q_nationality: "Koje je tvoje državljanstvo?",
+    q_address: "Gdje stanuješ?",
+    q_contact: "Kako da te kontaktiramo?",
+    q_tshirt: "Koja je tvoja veličina majice?",
+    q_shoe: "Koji je tvoj broj cipela?",
+    doc_id_title: "Dodaj ličnu kartu ili pasoš",
+    doc_selfie_title: "Dodaj selfie",
+    doc_license_title: "Dodaj vozačku dozvolu",
+    doc_certs_title: "Svjedočanstva / certifikati (opcionalno)",
+    comingSoon: "Uskoro",
     sec_identity: "Lični podaci",
     firstName: "Ime",
     lastName: "Prezime",
@@ -201,6 +237,18 @@ export const DICT: Record<Lang, Dict> = {
     q_truck: "Imaš li vozačku za kamion (Lkw)?",
     q_field: "U kojem području želiš raditi?",
     q_code95: "Imaš li Kod 95 (kvalifikacija profesionalnog vozača)?",
+    q_name: "Kako se zoveš?",
+    q_birth: "Kada i gdje si rođen/a?",
+    q_nationality: "Koje je tvoje državljanstvo?",
+    q_address: "Gdje stanuješ?",
+    q_contact: "Kako da te kontaktiramo?",
+    q_tshirt: "Koja je tvoja veličina majice?",
+    q_shoe: "Koji je tvoj broj cipela?",
+    doc_id_title: "Dodaj osobnu iskaznicu ili putovnicu",
+    doc_selfie_title: "Dodaj selfie",
+    doc_license_title: "Dodaj vozačku dozvolu",
+    doc_certs_title: "Svjedodžbe / certifikati (neobavezno)",
+    comingSoon: "Uskoro",
     sec_identity: "Osobni podaci",
     firstName: "Ime",
     lastName: "Prezime",

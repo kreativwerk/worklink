@@ -307,7 +307,7 @@ export function InquiryWizard() {
                     setData((d) => ({ ...d, jobDescription: e.target.value }))
                   }
                   placeholder="z. B. Lkw-Fahrer (C/CE) für den Nahverkehr, 2-Schicht-Betrieb, Palettentausch"
-                  className="mt-8 min-h-28 w-full resize-y rounded-xl border border-border bg-bg-elevated px-4 py-3 text-[15px] outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
+                  className="mt-8 min-h-28 w-full resize-y rounded-xl border border-border bg-bg-elevated px-4 py-3 text-base outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
                 />
               </div>
             )}
@@ -342,7 +342,7 @@ export function InquiryWizard() {
                     onChange={(e) =>
                       setData((d) => ({ ...d, payAmount: e.target.value }))
                     }
-                    className="w-full rounded-xl border border-border bg-bg-elevated px-4 py-2.5 text-[15px] outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
+                    className="w-full rounded-xl border border-border bg-bg-elevated px-4 py-3 text-base outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
                   />
                 </div>
               </div>
@@ -414,7 +414,7 @@ export function InquiryWizard() {
                       onChange={(e) =>
                         setData((d) => ({ ...d, rentWarm: e.target.value }))
                       }
-                      className="w-full rounded-xl border border-border bg-bg-elevated px-4 py-2.5 text-[15px] outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
+                      className="w-full rounded-xl border border-border bg-bg-elevated px-4 py-3 text-base outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
                     />
                   </div>
                   <MultiFileSlot
@@ -451,7 +451,7 @@ export function InquiryWizard() {
                         onChange={(e) =>
                           setData((d) => ({ ...d, [f.key]: e.target.value }))
                         }
-                        className="w-full rounded-xl border border-border bg-bg-elevated px-4 py-2.5 text-[15px] outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
+                        className="w-full rounded-xl border border-border bg-bg-elevated px-4 py-3 text-base outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
                       />
                     </div>
                   ))}
@@ -471,7 +471,7 @@ export function InquiryWizard() {
                   value={data.message ?? ""}
                   onChange={(e) => setData((d) => ({ ...d, message: e.target.value }))}
                   placeholder="Ihre Nachricht …"
-                  className="mt-8 min-h-32 w-full resize-y rounded-xl border border-border bg-bg-elevated px-4 py-3 text-[15px] outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
+                  className="mt-8 min-h-32 w-full resize-y rounded-xl border border-border bg-bg-elevated px-4 py-3 text-base outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25"
                 />
 
                 {/* Zusammenfassung */}

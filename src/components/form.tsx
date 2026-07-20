@@ -30,7 +30,7 @@ export function Field({
 }
 
 const controlBase =
-  "w-full rounded-xl border bg-bg-elevated px-4 py-2.5 text-[15px] outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25";
+  "w-full rounded-xl border bg-bg-elevated px-4 py-3 text-base outline-none transition-shadow placeholder:text-fg-subtle focus:border-lime-2 focus:ring-4 focus:ring-lime/25";
 
 export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return <input {...props} className={cn(controlBase, props.className)} />;

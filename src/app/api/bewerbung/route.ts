@@ -6,7 +6,8 @@ const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB
 const ALLOWED = ["application/pdf", "image/jpeg", "image/png"];
 
 const DOC_SLOTS = ["idFront", "idBack", "selfie", "licenseFront", "licenseBack"];
-const REQUIRED_DOCS = ["idFront", "idBack", "selfie"];
+// Führerschein ist Pflicht — wir rekrutieren aktuell Fahrer (Paketfahrer).
+const REQUIRED_DOCS = ["idFront", "idBack", "selfie", "licenseFront", "licenseBack"];
 const REQUIRED_FIELDS = [
   "firstName",
   "lastName",
