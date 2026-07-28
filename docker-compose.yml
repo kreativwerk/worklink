@@ -22,6 +22,12 @@ services:
     build: .
     container_name: worklink-app
     restart: unless-stopped
+    # Hängt sich zusätzlich ins Netz des zentralen Proxys (kiara-Caddy) ein,
+    # damit dessen reverse_proxy worklink-app:3000 dauerhaft erreichbar bleibt —
+    # auch nachdem der kiara-Caddy neu erstellt wurde.
+    networks:
+      - default
+      - proxy
     depends_on:
       db:
         condition: service_healthy
@@ -60,3 +66,9 @@ volumes:
   uploads:
   caddy-data:
   caddy-config:
+
+networks:
+  # Netz des zentralen Proxys (Compose-Projekt "kiara").
+  proxy:
+    external: true
+    name: kiara_default
