@@ -10,21 +10,21 @@ export const CONTACT = {
   whatsapp: "",
 };
 
-export type Industry = { key: string; de: string; sq: string; bs: string; hr: string };
+export type Industry = { key: string; de: string; sq: string; bs: string; hr: string; mk: string };
 
 export const INDUSTRIES: Industry[] = [
-  { key: "pflege", de: "Pflege & Medizin", sq: "Kujdes & Mjekësi", bs: "Njega i medicina", hr: "Njega i medicina" },
-  { key: "reinigung", de: "Gebäudereinigung", sq: "Pastrim profesional", bs: "Čišćenje objekata", hr: "Čišćenje objekata" },
-  { key: "service", de: "Callcenter & Service", sq: "Qendër thirrjesh", bs: "Pozivni centar i podrška", hr: "Pozivni centar i podrška" },
-  { key: "transport", de: "Transport & Fahrer", sq: "Transport & Shoferë", bs: "Transport i vozači", hr: "Transport i vozači" },
-  { key: "buero", de: "Büro & Verwaltung", sq: "Zyrë & Administratë", bs: "Kancelarija i administracija", hr: "Ured i administracija" },
-  { key: "marketing", de: "Marketing & Medien", sq: "Marketing & Media", bs: "Marketing i mediji", hr: "Marketing i mediji" },
-  { key: "handwerk", de: "Bau & Handwerk", sq: "Ndërtim & Zeje", bs: "Građevina i zanati", hr: "Graditeljstvo i obrt" },
-  { key: "logistik", de: "Lager & Logistik", sq: "Depo & Logjistikë", bs: "Skladište i logistika", hr: "Skladište i logistika" },
-  { key: "systemgastro", de: "Systemgastronomie", sq: "Gastronomi e shpejtë", bs: "Brza gastronomija", hr: "Brza gastronomija" },
-  { key: "hotel", de: "Hotel & Gastronomie", sq: "Hotel & Gastronomi", bs: "Hotel i ugostiteljstvo", hr: "Hotelijerstvo i ugostiteljstvo" },
-  { key: "produktion", de: "Produktion & Industrie", sq: "Prodhim & Industri", bs: "Proizvodnja i industrija", hr: "Proizvodnja i industrija" },
-  { key: "handel", de: "Handel & Vertrieb", sq: "Tregti & Shitje", bs: "Trgovina i prodaja", hr: "Trgovina i prodaja" },
+  { key: "pflege", de: "Pflege & Medizin", sq: "Kujdes & Mjekësi", bs: "Njega i medicina", hr: "Njega i medicina" , mk: "Нега и медицина" },
+  { key: "reinigung", de: "Gebäudereinigung", sq: "Pastrim profesional", bs: "Čišćenje objekata", hr: "Čišćenje objekata" , mk: "Чистење на објекти" },
+  { key: "service", de: "Callcenter & Service", sq: "Qendër thirrjesh", bs: "Pozivni centar i podrška", hr: "Pozivni centar i podrška" , mk: "Кол-центар и поддршка" },
+  { key: "transport", de: "Transport & Fahrer", sq: "Transport & Shoferë", bs: "Transport i vozači", hr: "Transport i vozači" , mk: "Транспорт и возачи" },
+  { key: "buero", de: "Büro & Verwaltung", sq: "Zyrë & Administratë", bs: "Kancelarija i administracija", hr: "Ured i administracija" , mk: "Канцеларија и администрација" },
+  { key: "marketing", de: "Marketing & Medien", sq: "Marketing & Media", bs: "Marketing i mediji", hr: "Marketing i mediji" , mk: "Маркетинг и медиуми" },
+  { key: "handwerk", de: "Bau & Handwerk", sq: "Ndërtim & Zeje", bs: "Građevina i zanati", hr: "Graditeljstvo i obrt" , mk: "Градежништво и занаети" },
+  { key: "logistik", de: "Lager & Logistik", sq: "Depo & Logjistikë", bs: "Skladište i logistika", hr: "Skladište i logistika" , mk: "Магацин и логистика" },
+  { key: "systemgastro", de: "Systemgastronomie", sq: "Gastronomi e shpejtë", bs: "Brza gastronomija", hr: "Brza gastronomija" , mk: "Брза гастрономија" },
+  { key: "hotel", de: "Hotel & Gastronomie", sq: "Hotel & Gastronomi", bs: "Hotel i ugostiteljstvo", hr: "Hotelijerstvo i ugostiteljstvo" , mk: "Хотел и угостителство" },
+  { key: "produktion", de: "Produktion & Industrie", sq: "Prodhim & Industri", bs: "Proizvodnja i industrija", hr: "Proizvodnja i industrija" , mk: "Производство и индустрија" },
+  { key: "handel", de: "Handel & Vertrieb", sq: "Tregti & Shitje", bs: "Trgovina i prodaja", hr: "Trgovina i prodaja" , mk: "Трговија и продажба" },
 ];
 
 /** Warum Arbeitskräfte aus dem Westbalkan (Unternehmensseite). */

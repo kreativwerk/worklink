@@ -26,7 +26,7 @@ import { cn } from "@/lib/utils";
    aber ausgegraut ("Säe shpejti / Uskoro"). Gespeichert wird der deutsche Wert. */
 const ACTIVE_FIELD = {
   value: "Paketfahrer",
-  label: { sq: "Shofer paketash", bs: "Vozač dostave paketa", hr: "Vozač dostave paketa" },
+  label: { sq: "Shofer paketash", bs: "Vozač dostave paketa", hr: "Vozač dostave paketa", mk: "Возач за достава на пакети" },
 };
 
 type Field = {
@@ -150,9 +150,10 @@ function buildSteps(t: (typeof DICT)[Lang], hasTruck: boolean): Step[] {
   ];
 }
 
-export function ApplyWizard() {
-  const [lang, setLang] = useState<Lang | null>(null);
-  const [index, setIndex] = useState(0);
+export function ApplyWizard({ initialLang }: { initialLang?: Lang }) {
+  // Kommt die Sprache schon aus dem Link (?lang=…), wird der Sprach-Schritt übersprungen.
+  const [lang, setLang] = useState<Lang | null>(initialLang ?? null);
+  const [index, setIndex] = useState(initialLang ? 1 : 0);
   const [dir, setDir] = useState(1);
   const [data, setData] = useState<Record<string, string>>({});
   const [files, setFiles] = useState<Record<string, File | null>>({});

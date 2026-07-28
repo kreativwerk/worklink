@@ -99,7 +99,11 @@ export function StatTiles() {
 }
 
 /* --- Industry grid (icon cards) ---------------------------------------- */
-export function IndustryGrid({ lang = "de" }: { lang?: "de" | "sq" }) {
+export function IndustryGrid({
+  lang = "de",
+}: {
+  lang?: "de" | "sq" | "bs" | "hr" | "mk";
+}) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
       {INDUSTRIES.map((ind, i) => {

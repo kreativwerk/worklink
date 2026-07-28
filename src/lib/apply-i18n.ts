@@ -3,12 +3,13 @@
  * Berufsbezeichnungen bleiben bewusst auf Deutsch (so wie am Arbeitsplatz).
  */
 
-export type Lang = "sq" | "bs" | "hr";
+export type Lang = "sq" | "bs" | "hr" | "mk";
 
 export const LANGS: { code: Lang; label: string; flag: string }[] = [
   { code: "sq", label: "Shqip", flag: "🇦🇱" },
   { code: "bs", label: "Bosanski", flag: "🇧🇦" },
   { code: "hr", label: "Hrvatski", flag: "🇭🇷" },
+  { code: "mk", label: "Македонски", flag: "🇲🇰" },
 ];
 
 export const TSHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "3XL"];
@@ -284,5 +285,71 @@ export const DICT: Record<Lang, Dict> = {
     done_body:
       "Hvala! Pregledat ćemo dokumente i javiti se sa sljedećim koracima.",
     intro: "Ispuni u nekoliko minuta. Svi podaci se tretiraju povjerljivo.",
+  },
+  mk: {
+    chooseLanguage: "Изберете јазик",
+    next: "Продолжи",
+    back: "Назад",
+    submit: "Испрати апликација",
+    submitting: "Се испраќа …",
+    step: "Чекор",
+    of: "од",
+    optional: "опционално",
+    autoHint: "Избери опција за да продолжиш",
+    yes: "Да",
+    no: "Не",
+    q_employment: "Каков вид работа сакаш?",
+    employment_full: "Полно работно време",
+    employment_part: "Скратено работно време",
+    q_truck: "Имаш ли возачка дозвола за камион (Lkw)?",
+    q_field: "Во која област сакаш да работиш?",
+    q_code95: "Имаш ли Код 95 (професионална квалификација за возачи)?",
+    q_name: "Како се викаш?",
+    q_birth: "Кога и каде си роден/а?",
+    q_nationality: "Кое е твоето државјанство?",
+    q_address: "Каде живееш?",
+    q_contact: "Како да те контактираме?",
+    q_tshirt: "Која е твојата големина на маица?",
+    q_shoe: "Кој е твојот број на чевли?",
+    doc_id_title: "Прикачи лична карта или пасош",
+    doc_selfie_title: "Прикачи селфи",
+    doc_license_title: "Прикачи возачка дозвола",
+    doc_certs_title: "Свидетелства / сертификати (опционално)",
+    comingSoon: "Наскоро",
+    sec_identity: "Лични податоци",
+    firstName: "Име",
+    lastName: "Презиме",
+    dob: "Датум на раѓање",
+    placeOfBirth: "Место на раѓање",
+    nationality: "Државјанство",
+    countryOfBirth: "Земја на раѓање",
+    sec_address: "Адреса",
+    street: "Улица и број",
+    postal: "Поштенски број",
+    city: "Град",
+    livingSince: "Живеам тука од",
+    sec_contact: "Контакт и големини",
+    email: "Е-пошта",
+    phone: "Телефон (WhatsApp)",
+    tshirt: "Големина на маица",
+    shoe: "Број на чевли",
+    sec_documents: "Документи",
+    docHint: "Фото или PDF · макс. 10 MB",
+    doc_idFront: "Пасош / Лична карта · Предна страна",
+    doc_idBack: "Лична карта · Задна страна",
+    doc_selfie: "Селфи · Фотографија за беџ",
+    doc_licenseFront: "Возачка дозвола · Предна страна",
+    doc_licenseBack: "Возачка дозвола · Задна страна",
+    doc_certificates: "Свидетелства / Сертификати (квалификации)",
+    doc_certificatesHint: "Можеш да додадеш повеќе датотеки",
+    uploadCta: "Избери датотека",
+    sec_consent: "Согласност",
+    consentText:
+      "Се согласувам моите податоци да се обработуваат согласно GDPR за целите на посредување при вработување.",
+    consentLabel: "Ја прифаќам обработката на податоците (GDPR).",
+    done_title: "Апликацијата е испратена!",
+    done_body:
+      "Ти благодариме! Ќе ги прегледаме документите и ќе те контактираме со следните чекори.",
+    intro: "Пополни за неколку минути. Сите податоци се третираат доверливо.",
   },
 };
