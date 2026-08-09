@@ -7,20 +7,20 @@
 
 :root {
   /* Page surfaces (light-first, with fixed-dark feature sections) */
-  --bg: #f2f3ec;          /* warm off-white */
+  --bg: #f2efe6;          /* Creme wie im Logo-Vorbild */
   --bg-elevated: #ffffff;
-  --fg: #0d1f1b;
-  --fg-muted: #566461;
-  --fg-subtle: #8a938f;
-  --border: rgba(13, 31, 27, 0.10);
+  --fg: #12271b;
+  --fg-muted: #52655a;
+  --fg-subtle: #86948a;
+  --border: rgba(18, 39, 27, 0.10);
 
   /* Brand */
-  --ink: #0e2b27;         /* dark petrol — dark sections & primary text-on-light */
-  --ink-2: #143a34;       /* elevated dark panel */
-  --ink-3: #1c4a42;       /* hover / lines on dark */
-  --lime: #c2f04a;        /* accent fill (with dark text) */
-  --lime-2: #4a7a00;      /* readable accent green for text/borders on LIGHT */
-  --on-lime: #0e2b27;     /* text on lime */
+  --ink: #14291d;         /* dunkles Waldgrün — dunkle Sektionen */
+  --ink-2: #1b3527;       /* elevated dark panel */
+  --ink-3: #25462f;       /* hover / lines on dark */
+  --lime: #8ede2b;        /* frisches Grün (wie das "ll") */
+  --lime-2: #417d10;      /* lesbares Grün für Text/Borders auf hell */
+  --on-lime: #14291d;     /* Text auf Grün */
 
   --radius: 26px;
   --radius-sm: 16px;
@@ -28,16 +28,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #081613;
-    --bg-elevated: #0e211d;
-    --fg: #eef3f0;
-    --fg-muted: #9fb0aa;
-    --fg-subtle: #6b7d77;
+    --bg: #0b1a12;
+    --bg-elevated: #122519;
+    --fg: #eef3ec;
+    --fg-muted: #9db3a4;
+    --fg-subtle: #6c8072;
     --border: rgba(255, 255, 255, 0.09);
-    --ink: #0a1f1b;
-    --ink-2: #102d28;
-    --ink-3: #1c4a42;
-    --lime-2: #c2f04a;
+    --ink: #10231a;
+    --ink-2: #17301f;
+    --ink-3: #25462f;
+    --lime-2: #8ede2b;
   }
 }
 
@@ -80,14 +80,14 @@ body {
 .surface-ink {
   background: var(--ink);
   color: #eef3f0;
-  --fg: #eef3f0;
-  --fg-muted: #9fb0aa;
-  --fg-subtle: #6b7d77;
+  --fg: #eef3ec;
+  --fg-muted: #9db3a4;
+  --fg-subtle: #6c8072;
   --border: rgba(255, 255, 255, 0.10);
   --bg-elevated: var(--ink-2);
-  --lime-2: #c2f04a; /* bright accent reads on dark petrol */
+  --lime-2: #8ede2b; /* helles Frischgrün auf dunklem Waldgrün */
 }
-.surface-ink .on-ink-muted { color: #9fb0aa; }
+.surface-ink .on-ink-muted { color: #9db3a4; }
 
 /* --- Bright lime accent surface (punchy CTA, NOT dark) ----------------- */
 .surface-lime {
@@ -109,7 +109,7 @@ body {
 
 /* Subtle dotted texture for dark sections */
 .dot-texture {
-  background-image: radial-gradient(rgba(194, 240, 74, 0.10) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(142, 222, 43, 0.10) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
