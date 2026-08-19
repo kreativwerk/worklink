@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRight, Building2 } from "lucide-react";
 import { Logo } from "@/components/logo";
+import { DriverPromo } from "@/components/driver-promo";
 import { BUILD_STAMP } from "@/lib/build-info";
 
 const fade = {
@@ -100,6 +101,11 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
+
+        {/* Aktions-Kampagne: Paketfahrer (Shqip) */}
+        <motion.div custom={8} variants={fade} initial="hidden" animate="show">
+          <DriverPromo />
+        </motion.div>
 
         {/* Vertrauens-Zeile + Stempel */}
         <motion.p
